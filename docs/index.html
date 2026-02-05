@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substrata - Framework-agnostic design tokens system</title>
+  <link rel="icon" href="svg/logo.svg">
+  <!-- Design System -->
+  <link rel="stylesheet" href="../src/substrata.css">
+  <link rel="stylesheet" href="../src/documentation.css">
+  <link rel="stylesheet" href="../src/components/components.css">
+
+  <!-- Syntax Highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <section>
+      <h1>
+        <div>
+          <img src="svg/logo.svg" alt="Substrata logo">
+          <span>Substrata</span>
+        </div>
+      </h1>
+      <ul>
+        <li>Presentation</li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="consumption.html">Consumption</a></li>
+        <li><a href="automation.html">Automation</a></li>
+        <li><a href="w3c-alignment.html">W3C alignment</a></li>
+        <li><a href="governance.html">Governance</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <div class="main-banner">
+    <img src="svg/logo-wire.svg" alt="Substrata logo">
+    <h2>Framework-agnostic design tokens system</h2>
+    <p class="text-secondary">
+      A single source of truth for design decisions that survives frameworks, platforms, and time.
+    </p>
+    <div class="buttons">
+      <a class="cta-getting-started" href="getting-started.html">
+        <span>Getting started</span>
+      </a>
+      <a class="cta-github" href="https://github.com/substrata-design/substrata">GitHub</a>
+    </div>
+  </div>
+
+  <main>
+
+    <section>
+
+      <div class="grid">
+        <div>
+          <h2>What is Substrata?</h2>
+          <p>
+            Substrata is a design token system built on CSS Variables, providing a stable, framework-agnostic foundation
+            beneath the UI. It defines design decisions as constraints — not implementations.
+          </p>
+          <p>
+            Unlike UI libraries that couple design to components, Substrata defines only primitives: colors, spacing,
+            typography, and other core decisions expressed as semantic, versionable tokens.
+          </p>
+          <p>
+            This separation preserves design intent across platforms (Web, iOS, Android) and implementation layers
+            (React,
+            Vue, plain HTML, Sass, Tailwind, CSS-in-JS), without rewriting the design system as stacks evolve.
+          </p>
+        </div>
+        <div>
+          <img src="svg/diagram2.jpg" alt="Diagram">
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Why Substrata exists</h2>
+      <p>
+        Most design systems are tightly coupled to specific frameworks or component models. When the stack changes, the
+        system must be rebuilt, causing design decisions to be duplicated, lost, or drift across products.
+      </p>
+      <p>
+        Substrata addresses this by treating design decisions as infrastructure — stable, explicit, framework-agnostic
+        contracts that outlive any single implementation.
+      </p>
+      <ul class="features-list">
+        <li>
+          <p class="text-default">Tokens as contracts</p>
+          <p class="text-secondary">Design decisions become stable, versionable interfaces between design and code.</p>
+        </li>
+        <li>
+          <p class="text-default">Framework independence</p>
+          <p class="text-secondary">Consume tokens in Tailwind, Sass, CSS-in-JS, or plain CSS without coupling to a
+            specific stack.</p>
+        </li>
+        <li>
+          <p class="text-default">Automation-ready</p>
+          <p class="text-secondary">Explicit tokens enable safe automation, including AI-assisted generation,
+            refactoring, and validation.</p>
+        </li>
+        <li>
+          <p class="text-default">Shared design language</p>
+          <p class="text-secondary">A common vocabulary that designers, developers, and tools can interpret and apply
+            consistently.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Substrata is composed of independent layers.</h2>
+
+      <p>
+        Substrata is structured into three decoupled layers. Each layer can evolve independently, without impacting the
+        others.
+      </p>
+
+      <ul class="grid">
+        <li>
+          <img src="svg/layer-01.svg" alt="Layer 01">
+          <p class="text-secondary">
+            <strong>Tokens</strong> define design decisions as CSS Variables: colors, spacing, typography, and core
+            primitives.They are semantic, stable, versionable, and platform-agnostic.
+          </p>
+        </li>
+        <li>
+          <img src="svg/layer-02.svg" alt="Layer 02">
+          <p class="text-secondary">
+            <strong>Base styles</strong> apply tokens to native HTML elements, establishing predictable defaults and
+            consistent rendering, without adding abstractions or components.
+          </p>
+        </li>
+        <li>
+          <img src="svg/layer-03.svg" alt="Layer 03">
+          <p class="text-secondary">
+            <strong>Components</strong> (optional) show reference patterns for consuming tokens in real interfaces. They
+            demonstrate usage, not prescribe a UI library.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>File structure</h2>
+      <pre><code class="language-text">substrata/
+ ├── src/
+ │    ├── tokens/
+ │    │    ├── typography.css
+ │    │    ├── spacing.css
+ │    │    ├── colors.css
+ │    │    ├── radius-and-borders.css
+ │    │    ├── elevation.css
+ │    │    ├── motion.css
+ │    │    ├── opacity.css
+ │    │    ├── breakpoints.css
+ │    │    └── semantic-aliases.css
+ │    ├── components/
+ │    ├── consumption/
+ │    ├── base.css
+ │    └── substrata.css</code></pre>
+    </section>
+
+    <section>
+      <h2>Philosophy</h2>
+      <p>
+        Design decisions are infrastructure.
+      </p>
+
+      <ul class="features-list text-secondary">
+        <li>Design decisions should be explicit, not implicit</li>
+        <li>Consistency should survive framework migrations</li>
+        <li>Tokens are stable contracts, not arbitrary values</li>
+        <li>Substrata is infrastructure — the foundation beneath the UI</li>
+      </ul>
+
+      <p>
+        This philosophy aligns with the <a href="w3c-alignment.html">W3C Design Tokens Community Group</a> model and is
+        designed for long-term evolution across platforms and teams.
+      </p>
+
+    </section>
+
+  </main>
+</body>
+
+</html>

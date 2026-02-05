@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substrata - Framework-agnostic design tokens system</title>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../src/substrata.css">
+  <link rel="stylesheet" href="../src/documentation.css">
+  <link rel="stylesheet" href="../src/components/components.css">
+
+  <!-- Syntax Highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+
+<body>
+
+  <!-- =========================
+        Header
+  ========================== -->
+  <header>
+    <section>
+      <h1>
+        <div>
+          <img src="svg/logo.svg" alt="Logo">
+          <span>Substrata</span>
+        </div>
+      </h1>
+      <ul>
+        <li><a href="index.html">Presentation</a></li>
+        <li>Getting started</li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="consumption.html">Consumption</a></li>
+        <li><a href="automation.html">Automation</a></li>
+        <li><a href="w3c-alignment.html">W3C alignment</a></li>
+        <li><a href="governance.html">Governance</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <main>
+
+    <section class="heading">
+      <h1>Getting started</h1>
+      <p>
+        Substrata is designed to be consumed, not imposed.<br>
+        You can adopt it incrementally, partially, or as a full
+        design foundation.
+      </p>
+    </section>
+
+    <section class="content">
+
+      <h2>NPM</h2>
+
+      <pre><code class="language-bash">npm install substrata</code></pre>
+
+      <h2>Import everything</h2>
+
+      <pre><code class="language-css">@import "substrata/src/substrata.css";</code></pre>
+
+      <p>This includes tokens, base styles, and reference components.</p>
+
+      <h2>Or import only what you need</h2>
+
+      <pre><code class="language-css">@import "substrata/src/tokens.css";
+@import "substrata/src/base.css";</code></pre>
+
+      <h2>Using with Tailwind CSS</h2>
+
+      <p>
+        Substrata does not replace Tailwind.<br> It provides design tokens that Tailwind can consume.
+      </p>
+
+      <h3>Import tokens</h3>
+
+      <pre><code class="language-css">@import "substrata/src/tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+
+      <h3>Map tokens in 'tailwind.config.js'</h3>
+
+      <pre><code class="language-javascript">export default {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          300: "var(--brand-300)",
+          500: "var(--brand-500)",
+          700: "var(--brand-700)",
+        },
+        neutral: {
+          0: "var(--neutral-0)",
+          900: "var(--neutral-900)",
+        },
+      },
+      spacing: {
+        1: "var(--space-1)",
+        2: "var(--space-2)",
+        3: "var(--space-3)",
+        4: "var(--space-4)",
+      },
+      borderRadius: {
+        md: "var(--radius-md)",
+      },
+    },
+  },
+};</code></pre>
+
+      <p>Tailwind utilities reflect the same design decisions defined in Substrata.</p>
+
+      <h2>Using with CSS-in-JS</h2>
+
+      <p>Substrata acts purely as a token layer.</p>
+
+      <h3>Import tokens globally</h3>
+
+      <pre><code class="language-javascript">import "substrata/src/tokens.css";</code></pre>
+
+      <h3>Use tokens inside components</h3>
+
+      <pre><code class="language-javascript">const Button = styled.button`
+  padding: var(--space-3) var(--space-5);
+  background: var(--brand-500);
+  color: var(--neutral-0);
+  border-radius: var(--radius-md);
+`;</code></pre>
+
+      <p>No coupling.<br>No runtime dependency.<br>No framework assumptions.</p>
+
+    </section>
+
+  </main>
+</body>
+
+</html>

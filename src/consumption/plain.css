@@ -1,0 +1,22 @@
+/* 
+  Plain CSS Consumption 
+  Directly uses CSS Variables defined in Substrata.
+*/
+
+.card {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.button {
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  border-radius: var(--radius-sm);
+}

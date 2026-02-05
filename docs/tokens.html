@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substrata - Framework-agnostic design tokens system</title>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../src/substrata.css">
+  <link rel="stylesheet" href="../src/documentation.css">
+  <link rel="stylesheet" href="../src/components/components.css">
+
+  <!-- Syntax Highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+
+<body>
+
+  <!-- =========================
+        Header
+  ========================== -->
+  <header>
+    <section>
+      <h1>
+        <div>
+          <img src="svg/logo.svg" alt="Logo">
+          <span>Substrata</span>
+        </div>
+      </h1>
+      <ul>
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li>Tokens</li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="consumption.html">Consumption</a></li>
+        <li><a href="automation.html">Automation</a></li>
+        <li><a href="w3c-alignment.html">W3C alignment</a></li>
+        <li><a href="governance.html">Governance</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <main>
+
+    <section class="heading">
+      <h1>Tokens</h1>
+      <p>Tokens are the foundation layer of Substrata.</p>
+    </section>
+
+    <section>
+      <p>
+        They represent design decisions expressed as variables, not components.<br>
+        In Substrata, a token is a CSS Custom Property, such as:
+      </p>
+
+      <pre><code class="language-css">--space-1
+--font-size-md
+--color-neutral-900
+--radius-md</code></pre>
+
+      <p>
+        They define constraints, scales, and semantic meaning that other layers consume.
+      </p>
+
+      <h2>What tokens are (and are not)</h2>
+
+      <h3>Tokens are:</h3>
+
+      <ul>
+        <li>Named CSS variables (--space-1, --color-brand-500)</li>
+        <li>Explicit design decisions</li>
+        <li>Stable and versionable contracts</li>
+        <li>Independent from layout and components</li>
+      </ul>
+
+      <h3>Tokens are not:</h3>
+
+      <ul>
+        <li>UI elements</li>
+        <li>Styled components</li>
+        <li>Visual examples</li>
+        <li>Framework-specific utilities</li>
+      </ul>
+
+      <p>
+        If something has a default appearance, it belongs to Components, not here.
+      </p>
+
+      <h2>Token structure</h2>
+
+      <p>
+        Each file exposes a set of CSS variables focused on a single decision domain.
+      </p>
+
+      <h3>Typography</h3>
+
+      <pre><code class="language-text">typography.css</code></pre>
+
+      <p>
+        Defines typographic scales as tokens.
+      </p>
+
+      <h4>Example</h4>
+
+      <pre><code class="language-css">--font-size-sm
+--font-size-md
+--font-size-lg
+--line-height-tight
+--font-weight-regular</code></pre>
+
+      <p>
+        These tokens describe typographic intent, not headings or text styles.
+      </p>
+
+      <h3>Spacing</h3>
+
+      <pre><code class="language-text">spacing.css</code></pre>
+
+      <p>
+        Defines the spacing scale used across the system.
+      </p>
+
+      <h4>Example</h4>
+
+      <pre><code class="language-css">--space-1
+--space-2
+--space-3
+--space-4
+--space-5</code></pre>
+
+      <p>Spacing tokens replace arbitrary values like 8px or 12px with a consistent scale.</p>
+
+
+      <h3>Colors</h3>
+
+      <pre><code class="language-text">colors.css</code></pre>
+
+      <p>Defines raw color values.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--color-brand-300
+--color-brand-500
+--color-neutral-0
+--color-neutral-900</code></pre>
+
+      <p>These tokens are value-based, without semantic context.</p>
+
+      <h3>Radius and borders</h3>
+
+      <pre><code class="language-text">radius-and-borders.css</code></pre>
+
+      <p>Defines shape-related decisions.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--radius-sm
+--radius-md
+--radius-lg
+--border-width-hairline</code></pre>
+
+      <p>Used to ensure consistent geometry across all consumers.</p>
+
+      <h3>Elevation</h3>
+
+      <pre><code class="language-text">elevation.css</code></pre>
+
+      <p>Defines depth tokens.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--elevation-1
+--elevation-2
+--elevation-3</code></pre>
+
+      <p>Elevation tokens express relative depth, not specific components.</p>
+
+      <h3>Motion</h3>
+
+      <pre><code class="language-text">motion.css</code></pre>
+
+      <p>Defines motion scales.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--motion-duration-fast
+--motion-duration-medium
+--motion-easing-standard</code></pre>
+
+      <p>Motion tokens control timing and rhythm, not animations themselves.</p>
+
+      <h3>Opacity</h3>
+
+      <pre><code class="language-text">opacity.css</code></pre>
+
+      <p>Defines transparency levels.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--opacity-disabled
+--opacity-muted
+--opacity-overlay</code></pre>
+
+      <p>Opacity tokens avoid arbitrary alpha values.</p>
+
+      <h3>Breakpoints</h3>
+
+      <pre><code class="language-text">breakpoints.css</code></pre>
+
+      <p>Defines responsive thresholds as tokens.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--breakpoint-sm
+--breakpoint-md
+--breakpoint-lg</code></pre>
+
+      <p>Breakpoints define when layout decisions change.</p>
+
+      <h3>Semantic aliases</h3>
+
+      <pre><code class="language-text">semantic-aliases.css</code></pre>
+
+      <p>Maps raw tokens to semantic meaning.</p>
+
+      <h4>Examples</h4>
+
+      <pre><code class="language-css">--color-text-primary
+--color-text-secondary
+--color-background-surface
+--color-border-subtle</code></pre>
+
+      <p>Semantic aliases allow design intent to evolve without changing the underlying scale.</p>
+
+    </section>
+
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+/* 
+  Sass / SCSS Consumption
+  Preprocessors don't transform CSS variables, they just pass them through.
+*/
+
+.card {
+    padding: var(--space-4);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-md);
+
+    // Nesting is handled by Sass
+    .card-header {
+        margin-bottom: var(--space-2);
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-bold);
+    }
+}
+
+@mixin button-styles {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-base);
+}
+
+.button-primary {
+    @include button-styles;
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+}

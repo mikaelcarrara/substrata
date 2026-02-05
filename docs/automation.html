@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substrata - Framework-agnostic design tokens system</title>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../src/substrata.css">
+  <link rel="stylesheet" href="../src/documentation.css">
+  <link rel="stylesheet" href="../src/components/components.css">
+
+  <!-- Syntax Highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+
+<body>
+
+  <!-- =========================
+        Header
+  ========================== -->
+  <header>
+    <section>
+      <h1>
+        <div>
+          <img src="svg/logo.svg" alt="Logo">
+          <span>Substrata</span>
+        </div>
+      </h1>
+      <ul>
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="consumption.html">Consumption</a></li>
+        <li>Automation</li>
+        <li><a href="w3c-alignment.html">W3C alignment</a></li>
+        <li><a href="governance.html">Governance</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <main>
+
+    <section class="heading">
+      <h1>Automation</h1>
+      <p>AI & Automation Integration</p>
+    </section>
+
+    <section>
+
+      <p>
+        Substrata can act as a stable design layer in AI-assisted and automated workflows.
+        Its explicit token structure allows automation tools and AI systems to read, validate, and generate UI code
+        without coupling to any specific framework.
+      </p>
+
+      <h2>AI-assisted workflows</h2>
+
+      <p>Design tokens in Substrata are explicit, semantic, and framework-agnostic.
+        This makes them suitable as inputs and constraints for automation and AI systems.</p>
+
+      <p>Rather than generating arbitrary styles, AI operates within a bounded design space defined by tokens.</p>
+
+      <h2>Example use cases</h2>
+
+      <ul>
+        <li>Generate UI components from design prompts constrained by tokens</li>
+        <li>Automatically validate color, spacing, and typography consistency</li>
+        <li>Refactor UI implementations across frameworks while preserving design intent</li>
+        <li>Build design-to-code pipelines where tokens act as constraints, not suggestions.</li>
+      </ul>
+
+      <h2>Why tokens matter for AI</h2>
+
+      <ul>
+        <li>Tokens reduce ambiguity</li>
+        <li>Subjective design decisions become explicit, machine-readable constraints</li>
+        <li>Automation becomes predictable, auditable, and safe at scale</li>
+      </ul>
+
+      <h2>Example prompts using tokens as input</h2>
+
+      <h3>1. Generate a component constrained by tokens</h3>
+
+      <pre><code class="language-text">Generate a Card component using only the following design tokens:
+
+- Colors: neutral-0, neutral-200, neutral-900
+- Spacing: space-3, space-4, space-5
+- Radius: radius-md
+- Typography: font-size-md, font-weight-medium
+
+Do not introduce new colors, spacing values, or font sizes.
+Output plain HTML and CSS.</code></pre>
+
+      <h4>Enforces</h4>
+
+      <ul>
+        <li>No arbitrary values</li>
+        <li>No framework assumptions</li>
+        <li>Tokens act as hard constraints</li>
+      </ul>
+
+      <h3>2. Validate a component against tokens</h3>
+
+      <pre><code class="language-text">Analyze the following CSS and report any values that are not mapped to the provided tokens:
+
+- Allowed spacing tokens: space-1 to space-6
+- Allowed colors: neutral scale and brand scale
+- Allowed font sizes: font-size-sm, font-size-md, font-size-lg
+
+Return a list of violations and suggested token replacements.</code></pre>
+
+      <h4>Use case</h4>
+
+      <ul>
+        <li>Automated design linting</li>
+        <li>CI validation</li>
+        <li>Consistency checks at scale</li>
+      </ul>
+
+      <h3>3. Refactor a component across frameworks</h3>
+
+      <pre><code class="language-text">Refactor this React component to plain HTML and CSS.
+
+Preserve all design decisions by replacing hardcoded values with the following tokens:
+- Colors
+- Spacing
+- Typography
+- Border radius
+
+Do not change the visual output.
+Do not introduce framework-specific patterns.</code></pre>
+
+      <h4>Outcome</h4>
+
+      <ul>
+
+        <li>Same design</li>
+        <li>Different implementation</li>
+        <li>Tokens remain the invariant layer</li>
+      </ul>
+
+      <h3>4. Design-to-code from intent, not pixels</h3>
+
+      <pre><code class="language-text">Create a form layout based on these constraints:
+
+- Use Substrata form tokens and base styles
+- Inputs must follow spacing and typography tokens
+- Focus states must use brand tokens
+- No custom values allowed
+
+The result should be accessible and framework-agnostic.</code></pre>
+
+      <h4>Why this works</h4>
+
+      <ul>
+        <li>The prompt describes rules, not visuals</li>
+        <li>Tokens replace subjective interpretation</li>
+      </ul>
+
+      <h3>5. Token-driven variation generation</h3>
+
+      <pre><code class="language-text">Generate three visual variants of the same component.
+
+The only allowed difference between variants is:
+- brand-300
+- brand-500
+- brand-700
+
+All other tokens must remain unchanged.</code></pre>
+
+      <h4>Use case</h4>
+
+      <ul>
+        <li>Theming</li>
+        <li>A/B testing</li>
+        <li>Brand adaptation without redesign</li>
+      </ul>
+
+      <h2>AI Prompt Templates (Token-driven)</h2>
+
+      <p>
+        These templates can be reused in automation pipelines, CI workflows, or AI agents.
+      </p>
+
+      <h3>Component Generation Template</h3>
+
+      <p>
+        <strong>Purpose:</strong><br>Generate UI components strictly constrained by design tokens.
+      </p>
+
+      <pre><code class="language-text">ROLE:
+You are a UI code generator constrained by design tokens.
+ 
+INPUT:
+- Component type: {{component_name}}
+- Allowed tokens:
+- Colors: {{color_tokens}}
+- Spacing: {{spacing_tokens}}
+- Typography: {{typography_tokens}}
+- Radius: {{radius_tokens}}
+
+RULES:
+- Do not introduce values outside the provided tokens.
+- Do not assume any framework.
+- Output plain HTML and CSS only.
+
+OUTPUT:
+- Semantic HTML
+- Minimal, token-based CSS</code></pre>
+
+      <h3>Token validation / linting template</h3>
+
+      <p>
+        <strong>Purpose:</strong><br>Detect design inconsistencies automatically.
+      </p>
+
+      <pre><code class="language-text">ROLE:
+You are a design token validator.
+
+INPUT:
+- Source code: {{code_input}}
+- Allowed tokens:
+- Colors: {{color_tokens}}
+- Spacing: {{spacing_tokens}}
+- Typography: {{typography_tokens}}
+
+TASK:
+- Identify any hardcoded values not mapped to tokens.
+- Suggest the closest valid token replacement.
+
+OUTPUT:
+- List of violations
+- Line reference (if available)
+- Suggested token</code></pre>
+
+      <h3>Cross-Framework Refactor Template</h3>
+
+      <p>
+        <strong>Purpose:</strong><br>Preserve design decisions while changing implementation.
+      </p>
+
+      <pre><code class="language-text">ROLE:
+You are a refactoring agent.
+
+INPUT:
+- Source component: {{source_code}}
+- Target output: {{target_format}}
+- Design tokens: {{token_set}}
+
+RULES:
+- Preserve visual output.
+- Replace all hardcoded values with tokens.
+- Do not introduce framework-specific abstractions.
+
+OUTPUT:
+- Refactored component using only tokens</code></pre>
+
+      <h3>Design-to-Code Constraint Template</h3>
+
+      <p>
+        <strong>Purpose:</strong><br>Generate UI from intent, not from visual guesswork.
+      </p>
+
+      <pre><code class="language-text">ROLE:
+You are a design-to-code generator.
+
+INPUT:
+- UI intent: {{intent_description}}
+- Token system: {{token_set}}
+
+CONSTRAINTS:
+- Use only provided tokens
+- Respect accessibility best practices
+- No custom values
+
+OUTPUT:
+- Token-compliant UI markup</code></pre>
+
+      <h3>Controlled Variation Template</h3>
+
+      <p>
+        <strong>Purpose:</strong><br>Create safe visual variations without redesign.
+      </p>
+
+      <pre><code class="language-text">ROLE:
+You are a variation generator.
+
+INPUT:
+- Base component: {{component_code}}
+- Variable tokens: {{variable_tokens}}
+
+RULES:
+- Only variable tokens may change.
+- All other tokens must remain identical.
+
+OUTPUT:
+- Variant A
+- Variant B
+- Variant C</code></pre>
+
+      <h2>How this fits an AI pipeline</h2>
+
+      <ul>
+        <li>Design tokens define the contract</li>
+        <li>Prompts act as executable specifications</li>
+        <li>AI operates as a constrained executor, not a decision-maker</li>
+      </ul>
+
+      <h3>This enables Substrata to integrate with:</h3>
+
+      <ul>
+        <li>CI validation</li>
+        <li>Design QA automation</li>
+        <li>Design-to-code agents</li>
+        <li>Multi-framework refactors</li>
+        <li>AI-assisted theming</li>
+      </ul>
+
+    </section>
+
+  </main>
+</body>
+
+</html>

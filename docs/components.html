@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Substrata - Framework-agnostic design tokens system</title>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="../src/substrata.css">
+  <link rel="stylesheet" href="../src/documentation.css">
+  <link rel="stylesheet" href="../src/components/components.css">
+</head>
+
+<body>
+
+  <!-- =========================
+         Header
+    ========================== -->
+  <header>
+    <section>
+      <h1>
+        <div>
+          <img src="svg/logo.svg" alt="Logo">
+          <span>Substrata</span>
+        </div>
+      </h1>
+      <ul>
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li>Components</li>
+        <li><a href="consumption.html">Consumption</a></li>
+        <li><a href="automation.html">Automation</a></li>
+        <li><a href="w3c-alignment.html">W3C alignment</a></li>
+        <li><a href="governance.html">Governance</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <main>
+
+    <section class="heading">
+      <h1>Components</h1>
+      <p>
+        Reference components built directly on top of tokens.
+        They demonstrate how design decisions can be consumed
+        without relying on a framework.
+        These components are optional and exist solely as
+        implementation examples — not as a UI kit.
+      </p>
+    </section>
+
+    <!-- =========================
+         Typography
+    ========================== -->
+    <section class="typography">
+      <h2>Typography</h2>
+
+      <h1>Heading 1</h1>
+      <span class="token-doc">--font-size-2xl</span>
+      <span class="class-doc">h1</span>
+
+      <h2>Heading 2</h2>
+      <span class="token-doc">--font-size-xl</span>
+      <span class="class-doc">h2</span>
+
+      <h3>Heading 3</h3>
+      <span class="token-doc">--font-size-lg</span>
+      <span class="class-doc">h3</span>
+
+      <h4>Heading 4</h4>
+      <span class="token-doc">--font-size-md</span>
+      <span class="class-doc">h4</span>
+
+      <p class="text-default">
+        Default text used for continuous reading and primary content.
+      </p>
+      <span class="token-doc">--font-size-md</span>
+      <span class="class-doc">.text-default</span>
+
+      <p class="text-secondary">
+        Secondary text used for descriptions, supporting content, and auxiliary information.
+      </p>
+      <span class="token-doc">--font-size-sm</span>
+      <span class="class-doc">.text-secondary</span>
+
+      <p class="text-small">
+        Small text used for captions, metadata, or less relevant information.
+      </p>
+      <span class="token-doc">--font-size-xs</span>
+      <span class="class-doc">.text-small</span>
+    </section>
+
+    <!-- =========================
+         Spacing
+    ========================== -->
+    <section>
+      <h2>Spacing</h2>
+      <div class="spacing-grid">
+        <div class="spacing-item">
+          <div class="token-doc">--space-1</div>
+          <div class="spacing-visual" data-space="1"></div>
+          <div class="spacing-value">4px / 0.25rem</div>
+        </div>
+        <div class="spacing-item">
+          <div class="token-doc">--space-2</div>
+          <div class="spacing-visual" data-space="2"></div>
+          <div class="spacing-value">8px / 0.5rem</div>
+        </div>
+        <div class="spacing-item">
+          <div class="token-doc">--space-3</div>
+          <div class="spacing-visual" data-space="3"></div>
+          <div class="spacing-value">12px / 0.75rem</div>
+        </div>
+        <div class="spacing-item">
+          <div class="token-doc">--space-4</div>
+          <div class="spacing-visual" data-space="4"></div>
+          <div class="spacing-value">16px / 1rem</div>
+        </div>
+        <div class="spacing-item">
+          <div class="token-doc">--space-5</div>
+          <div class="spacing-visual" data-space="5"></div>
+          <div class="spacing-value">24px / 1.5rem</div>
+        </div>
+        <div class="spacing-item">
+          <div class="token-doc">--space-6</div>
+          <div class="spacing-visual" data-space="6"></div>
+          <div class="spacing-value">32px / 2rem</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Colors
+    ========================== -->
+    <section>
+      <h2>Colors</h2>
+
+      <div class="palette">
+        <div class="palette-item" data-color="neutral-0">neutral-0</div>
+        <div class="palette-item" data-color="neutral-50">neutral-50</div>
+        <div class="palette-item" data-color="neutral-100">neutral-100</div>
+        <div class="palette-item" data-color="neutral-200">neutral-200</div>
+        <div class="palette-item" data-color="neutral-300">neutral-300</div>
+        <div class="palette-item" data-color="neutral-400">neutral-400</div>
+        <div class="palette-item" data-color="neutral-500">neutral-500</div>
+        <div class="palette-item" data-color="neutral-600">neutral-600</div>
+        <div class="palette-item" data-color="neutral-700">neutral-700</div>
+        <div class="palette-item" data-color="neutral-800">neutral-800</div>
+        <div class="palette-item" data-color="neutral-900">neutral-900</div>
+        <div class="palette-item" data-color="brand-300">brand-300</div>
+        <div class="palette-item" data-color="brand-500">brand-500</div>
+        <div class="palette-item" data-color="brand-700">brand-700</div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Card
+    ========================== -->
+    <section>
+      <h2>Card</h2>
+      <div class="card">
+        <div class="banner">
+          <!--
+          <img src="banner.jpg" alt="Banner do card">
+          -->
+        </div>
+        <h4>Card Title</h4>
+        <p class="text-secondary">
+          A neutral container for grouping related content, fully defined by tokens.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="banner"></div>
+          <h4>Card Title</h4>
+          <p class="text-secondary">
+            A neutral container for grouping related content, fully defined by tokens.
+          </p>
+        </div>
+        <div class="card">
+          <div class="banner">
+            <!--
+            <img src="banner.jpg" alt="Banner do card">
+            -->
+          </div>
+          <h4>Card Title</h4>
+          <p class="text-secondary">
+            A neutral container for grouping related content, fully defined by tokens.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Users List
+    ========================== -->
+    <section>
+      <h2 class="doc-h2">Users List</h2>
+
+      <div class="users-list">
+        <div class="users-list-item">
+          <div class="users-list-avatar"></div>
+          <div>
+            <div class="users-list-name">Ana Silva</div>
+            <div class="users-list-bio">
+              UX Designer focused on systems and accessibility
+            </div>
+          </div>
+        </div>
+
+        <div class="users-list-item">
+          <div class="users-list-avatar"></div>
+          <div>
+            <div class="users-list-name">João Pereira</div>
+            <div class="users-list-bio">
+              Front-end developer passionate about modern CSS
+            </div>
+          </div>
+        </div>
+
+        <div class="users-list-item">
+          <div class="users-list-avatar"></div>
+          <div>
+            <div class="users-list-name">Marina Costa</div>
+            <div class="users-list-bio">
+              Product designer focused on clarity and visual consistency
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Form
+    ========================== -->
+    <section>
+      <h2 class="doc-h2">Form</h2>
+
+      <form class="card">
+
+        <!-- Text -->
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">E-mail</label>
+          <input class="form-input" type="email" id="email" />
+        </div>
+
+        <!-- Select -->
+        <div class="form-group">
+          <label class="form-label" for="country">Country</label>
+
+          <div class="form-select-wrapper">
+            <select class="form-select" id="country">
+              <option value="">Select an option</option>
+              <option>Brazil</option>
+              <option>United States</option>
+              <option>Germany</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" placeholder="Write your message"></textarea>
+        </div>
+
+        <!-- Radio -->
+        <div class="form-group">
+          <span class="form-label">Plan</span>
+
+          <div class="form-options">
+            <label class="form-option">
+              <input type="radio" name="plan" checked>
+              Básico
+            </label>
+
+            <label class="form-option">
+              <input type="radio" name="plan">
+              Pro
+            </label>
+          </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-group">
+          <span class="form-label">Preferences</span>
+
+          <div class="form-options">
+            <label class="form-option">
+              <input type="checkbox" checked>
+              Receive news
+            </label>
+
+            <label class="form-option">
+              <input type="checkbox">
+              Accept terms
+            </label>
+          </div>
+        </div>
+
+        <button class="form-button" type="submit">
+          Send
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+</body>
+
+</html>
