@@ -10,4 +10,5 @@ Tasks to complete the first version of Substrata:
 - [ ] **Review Tokens** - Audit and validate all design tokens for consistency and completeness
 
 ## Distribution
-- [ ] **GitHub Repository** - Upload project to GitHub with proper documentation and configuration
+- [x] **GitHub Repository** - Upload project to GitHub with proper documentation and configuration
+- [/] **GitHub Pages** - Publish documentation to GitHub Pages

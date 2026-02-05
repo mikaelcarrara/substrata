@@ -1,0 +1,46 @@
+name: Deploy Documentation
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Build site
+        run: |
+          mkdir -p _site
+          cp -rv docs/* _site/
+          mkdir -p _site/src
+          cp -rv src/* _site/src/
+          # Fix paths: ../src/ -> src/ (since src is now a subfolder of the root)
+          find _site -name "*.html" -exec sed -i 's|href="../src/|href="src/|g' {} +
+          find _site -name "*.html" -exec sed -i 's|src="../src/|src="src/|g' {} +
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
