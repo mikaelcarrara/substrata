@@ -11,4 +11,4 @@ Tasks to complete the first version of Substrata:
 
 ## Distribution
 - [x] **GitHub Repository** - Upload project to GitHub with proper documentation and configuration
-- [/] **GitHub Pages** - Publish documentation to GitHub Pages (Deploying...)
+- [x] **GitHub Pages** - Publish documentation to GitHub Pages (Live soon)
