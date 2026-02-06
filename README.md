@@ -4,7 +4,7 @@ Substrata is a framework-agnostic design tokens system built with CSS Variables.
 
 Unlike a UI library, Substrata provides the *definitions* (tokens) that drive the UI, ensuring that design intent is preserved from Figma to production code.
 
-**[🌐 Live Documentation](https://mikaelcarrara.github.io/substrata)**
+**[Documentation](https://mikaelcarrara.github.io/substrata)**
 
 ---
 
