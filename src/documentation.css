@@ -38,7 +38,6 @@ ul.grid>li img {
 main {
   max-width: 800px;
   margin: 0 auto;
-  padding-bottom: 200px;
 }
 
 main section {
@@ -51,6 +50,38 @@ main .card {
 
 .typography p {
   margin: 25px 0 5px 0;
+}
+
+
+/* Footer */
+
+footer {
+  background: var(--neutral-100);
+  padding: var(--space-6) var(--space-5);
+}
+
+footer section {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--neutral-500);
+}
+
+footer a {
+  color: var(--brand-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 
@@ -443,6 +474,7 @@ table td {
   width: var(--space-6);
 }
 
+
 /* ============================== 
    Responsive
    ============================== */
@@ -557,5 +589,11 @@ table td {
 
   .palette {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  footer section {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
   }
 }
