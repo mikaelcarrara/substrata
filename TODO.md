@@ -5,7 +5,7 @@ Tasks to complete the first version of Substrata:
 ## Documentation & UI
 - [x] **Logo Link** - Link logo to `/` (index.html)
 - [x] **Clean URLs** - Remove `.html` extension from links
-- [ ] **Footer** - Add footer section to documentation pages
+- [x] **Footer** - Add footer section to documentation pages
 - [x] **Responsive Design** - Ensure all documentation pages are mobile-responsive
 
 ## Design System
