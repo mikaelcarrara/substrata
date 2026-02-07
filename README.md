@@ -46,26 +46,45 @@ Read more in [W3C Alignment](./docs/w3c-alignment.html).
 
 ---
 
-## Installation & Usage
+## Choose Your Path
 
-Substrata can be used for **Consumption** (using the tokens) or **Authoring** (creating your own tokens).
+Substrata is designed to be used in three distinct ways depending on your goal.
 
-### 1. Consumer (Recommended)
-If you just want to use the default Substrata tokens in your project:
+| Path | Goal | Installation | Tool |
+| :--- | :--- | :--- | :--- |
+| **1. Consumer** | Use default tokens in your app | `npm install @mikaelcarrara/substrata` | NPM |
+| **2. Author** | Manage your own design system | `npx @mikaelcarrara/substrata init` | CLI (NPX) |
+| **3. Contributor** | Modify Substrata core/docs | `git clone ...` | Git |
+
+---
+
+### Path 1: Consumer (Recommended)
+Best for developers who want to use the official Substrata tokens (colors, spacing, etc.) in their project.
 
 ```bash
 npm install @mikaelcarrara/substrata
 ```
+*See [Getting Started](https://mikaelcarrara.github.io/substrata/getting-started) for importing CSS/JSON.*
 
-### 2. Author/Automation
-If you want to use Substrata as a framework to manage your own design tokens:
+### Path 2: Author & Automation
+Best for architects building a custom design system using Substrata as the engine.
 
 ```bash
-# Initialize configuration and folder structure
+# Set up your config and folder structure
 npx @mikaelcarrara/substrata init
 
-# Generate machine-readable tokens.json
+# Build your machine-readable tokens.json
 npx @mikaelcarrara/substrata generate
+```
+*See [Authoring & Automation](https://mikaelcarrara.github.io/substrata/automation) for guide.*
+
+### Path 3: Contributor
+Best for those who want to improve Substrata itself or host their own fork.
+
+```bash
+git clone https://github.com/mikaelcarrara/substrata.git
+cd substrata
+npm install
 ```
 
 ### Manual Download

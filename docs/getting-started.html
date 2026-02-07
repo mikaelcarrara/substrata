@@ -85,22 +85,28 @@
 
       <h2>Installation</h2>
 
-      <p>The recommended way to consume Substrata in a project is via NPM.</p>
+      <p>Depending on your relationship with the design system, there are two main ways to start.</p>
 
-      <h3>1. Via NPM (Recommended)</h3>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Path 1: Consumer (Recommended)</h3>
+          <p>You want to use the official Substrata tokens in your project.</p>
+          <pre><code class="language-bash">npm install @mikaelcarrara/substrata</code></pre>
+        </div>
+        <div class="card">
+          <h3>Path 2: Author</h3>
+          <p>You want to build <strong>your own</strong> system using Substrata as the engine.</p>
+          <p><a href="automation" class="button">Go to Authoring Guide</a></p>
+        </div>
+      </div>
 
-      <pre><code class="language-bash">npm install @mikaelcarrara/substrata</code></pre>
+      <h2>Manual Installation</h2>
 
-      <h3>2. Manual Installation</h3>
-
-      <p>Clone or download from GitHub:</p>
+      <p>Download the latest CSS bundles directly if you don't use NPM:</p>
 
       <pre><code class="language-bash">git clone https://github.com/mikaelcarrara/substrata.git</code></pre>
 
-      <p>Or download directly and include in your project.</p>
-
-      <p><em>Note: If you want to use the CLI to author your own tokens, see the <a href="automation">Automation</a>
-          page.</em></p>
+      <p>Include the <code>src/substrata.css</code> file in your HTML or CSS imports.</p>
 
       <h2>Import everything</h2>
 
