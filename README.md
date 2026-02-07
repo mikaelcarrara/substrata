@@ -69,13 +69,17 @@ npm install @mikaelcarrara/substrata
 ### Path 2: Author & Automation
 Best for architects building a custom design system using Substrata as the engine.
 
+`init` scaffolds a solid base: `substrata.config.js`, `src/tokens/` (colors, spacing, typography, radius-and-borders), `src/substrata.css`, and `src/base.css`. If you have a `package.json`, it adds a `build:tokens` script.
+
 ```bash
-# Set up your config and folder structure
+# Set up config, tokens, and CSS entry point
 npx @mikaelcarrara/substrata init
 
-# Build your machine-readable tokens.json
+# Generate tokens.json (or run npm run build:tokens if added)
 npx @mikaelcarrara/substrata generate
 ```
+
+Then import `src/substrata.css` in your app.
 *See [Authoring & Automation](https://mikaelcarrara.github.io/substrata/automation) for guide.*
 
 ### Path 3: Contributor
