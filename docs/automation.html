@@ -98,20 +98,18 @@
 
       <p>Rather than generating arbitrary styles, AI operates within a bounded design space defined by tokens.</p>
 
-      <h2>Requirements for Automation</h2>
+      <h2>Requirements for Contributor (Path 3)</h2>
 
       <p>
-        To enable the use cases below, you must first generate the machine-readable <code>tokens.json</code> file.
-        This file acts as the bridge between your CSS variables and external tools (linters, AI agents, CI/CD).
+        If you are working directly in the <strong>Substrata source code</strong>, use the internal build scripts.
+        Note: This is only for maintaining the Substrata library itself.
       </p>
 
       <pre><code class="language-bash"># 1. Install dependencies
 npm install
 
-# 2. Build tokens.json
-npm run build:tokens
-
-# Output: ./tokens.json</code></pre>
+# 2. Build machine-readable tokens
+npm run build:tokens</code></pre>
 
       <h2>Real-world Use Cases to Implement Today</h2>
 
@@ -125,7 +123,7 @@ substrata-lint src/**/*.css --tokens=./tokens.json
       <h3>2. AI-Assisted Component Library Migration</h3>
 
       <pre><code class="language-bash"># Incremental migration
-$ ai migrate ./legacy-components \
+ai migrate ./legacy-components \
   --from chakra-ui \
   --to substrata \
   --preserve-behavior
@@ -194,11 +192,11 @@ export async function reviewPR(diff: string) {
 
       <h4>1. Advanced Validation & Migration</h4>
 
-      <pre><code class="language-bash"># Future features:
-$ npx @mikaelcarrara/substrata validate ./src --strict
-$ npx @mikaelcarrara/substrata migrate --from tailwind
-$ npx @mikaelcarrara/substrata generate button --variant primary
-$ npx @mikaelcarrara/substrata export --format figma-tokens</code></pre>
+      <pre><code class="language-bash"># Future features (Experimental):
+npx @mikaelcarrara/substrata validate ./src --strict
+npx @mikaelcarrara/substrata migrate --from tailwind
+npx @mikaelcarrara/substrata generate button --variant primary
+npx @mikaelcarrara/substrata export --format figma-tokens</code></pre>
 
       <h4>2. JSON Schema & TypeScript Types</h4>
 

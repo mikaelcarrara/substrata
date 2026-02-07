@@ -85,6 +85,7 @@ Best for those who want to improve Substrata itself or host their own fork.
 git clone https://github.com/mikaelcarrara/substrata.git
 cd substrata
 npm install
+npm run build:tokens
 ```
 
 ### Manual Download
