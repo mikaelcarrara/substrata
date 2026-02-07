@@ -1,0 +1,54 @@
+/* Main banner */
+
+.main-banner {
+  background: var(--neutral-100);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+.main-banner img {
+  width: 100px;
+}
+
+.main-banner h2 {
+  font-weight: var(--font-weight-bold);
+  font-size: 2.3rem;
+  margin: var(--space-3) 0 var(--space-4) 0;
+}
+
+.main-banner p {
+  margin: 0 0 var(--space-5) 0;
+}
+
+.buttons {
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.buttons a {
+  min-width: 120px;
+  text-decoration: none;
+  height: 43px;
+  line-height: 40px;
+  padding: 0 var(--space-4);
+  display: inline-block;
+  margin: 0 var(--space-2);
+  box-sizing: border-box;
+  font-weight: var(--font-weight-semibold);
+}
+
+.cta-github {
+  background-color: var(--neutral-0);
+  color: var(--neutral-900);
+  border: 1px solid var(--neutral-400);
+}
+
+.cta-getting-started {
+  background-color: var(--brand-500);
+  color: var(--neutral-0);
+}
+
+.buttons a:hover {
+  text-decoration: none;
+}

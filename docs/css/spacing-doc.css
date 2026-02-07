@@ -1,0 +1,59 @@
+/* ============================== 
+   Spacing
+============================== */
+
+.spacing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.spacing-item {
+  padding: var(--space-3);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
+.spacing-token {
+  margin-bottom: var(--space-2);
+}
+
+.spacing-visual {
+  height: 12px;
+  background: var(--neutral-900);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-3);
+}
+
+.spacing-value {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-md);
+}
+
+/*-*/
+
+.spacing-visual[data-space="1"] {
+  width: var(--space-1);
+}
+
+.spacing-visual[data-space="2"] {
+  width: var(--space-2);
+}
+
+.spacing-visual[data-space="3"] {
+  width: var(--space-3);
+}
+
+.spacing-visual[data-space="4"] {
+  width: var(--space-4);
+}
+
+.spacing-visual[data-space="5"] {
+  width: var(--space-5);
+}
+
+.spacing-visual[data-space="6"] {
+  width: var(--space-6);
+}

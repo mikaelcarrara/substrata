@@ -1,0 +1,30 @@
+/* Footer */
+
+footer {
+  background: var(--neutral-100);
+  padding: var(--space-6) var(--space-5);
+}
+
+footer section {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--neutral-500);
+}
+
+footer a {
+  color: var(--brand-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
