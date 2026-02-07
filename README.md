@@ -114,13 +114,13 @@ const Button = styled.button`
 
 ## Documentation
 
-*   [**Presentation**](./docs/index.html)
-*   [**Getting Started**](./docs/getting-started.html)
-*   [**Tokens Reference**](./docs/tokens.html)
-*   [**Reference Components**](./docs/components.html)
-*   [**Consumption Strategies**](./docs/consumption.html)
-*   [**Automation & AI**](./docs/automation.html)
-*   [**W3C Alignment**](./docs/w3c-alignment.html)
+*   [**Presentation**](https://mikaelcarrara.github.io/substrata/)
+*   [**Getting Started**](https://mikaelcarrara.github.io/substrata/getting-started)
+*   [**Tokens Reference**](https://mikaelcarrara.github.io/substrata/tokens)
+*   [**Reference Components**](https://mikaelcarrara.github.io/substrata/components)
+*   [**Consumption Strategies**](https://mikaelcarrara.github.io/substrata/consumption)
+*   [**Automation & AI**](https://mikaelcarrara.github.io/substrata/automation)
+*   [**W3C Alignment**](https://mikaelcarrara.github.io/substrata/w3c-alignment)
 
 ---
 
