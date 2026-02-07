@@ -10,11 +10,15 @@ Tasks to complete the first version of Substrata:
 - [x] **Social Media Meta Tags** - Add OG and Twitter cards to documentation pages
 - [x] **Favicon** - Add favicon to documentation pages
 - [x] **Fixed header** - The header should be fixed to the top of the page and should not scroll with the content.
+- [x] **Modular CSS** - Refactor documentation styles into manageable modules
 
 ## Design System
 - [ ] **Review Tokens** - Audit and validate all design tokens for consistency and completeness 
+- [x] **CLI Logic** - Make token generation script configuration-aware (`substrata.config.js`)
 
-## Distribution
+## Distribution & Automation
 - [x] **GitHub Repository** - Upload project to GitHub with proper documentation and configuration
-- [x] **GitHub Pages** - Publish documentation to GitHub Pages (Live soon)
+- [x] **GitHub Pages** - Publish documentation to GitHub Pages
+- [x] **NPM Publication** - Publish `@mikaelcarrara/substrata` package to NPM
+- [x] **Documentation - Consumption** - Add guides for consuming tokens via NPM/CLI
     

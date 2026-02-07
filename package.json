@@ -1,5 +1,5 @@
 {
-    "name": "substrata",
+    "name": "@mikaelcarrara/substrata",
     "version": "1.0.0",
     "description": "Framework-agnostic design tokens system",
     "bin": {
@@ -16,5 +16,14 @@
         "css-variables"
     ],
     "author": "Mikael Carrara",
-    "license": "ISC"
+    "license": "ISC",
+    "files": [
+        "bin",
+        "scripts",
+        "src",
+        "index.js",
+        "tokens.json",
+        "README.md",
+        "substrata.config.js"
+    ]
 }

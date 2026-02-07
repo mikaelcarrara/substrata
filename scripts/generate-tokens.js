@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const TOKENS_DIR = path.join(__dirname, '../src/tokens');
-const OUTPUT_FILE = path.join(__dirname, '../tokens.json');
-
 // Helper to convert kebab-case to nested object structure
 // e.g. "color-neutral-100" -> { color: { neutral: { 100: ... } } }
 function setDeep(obj, pathParts, value) {
@@ -45,14 +42,36 @@ function parseCssVariables(cssContent) {
 
 async function generateTokens() {
     try {
-        const files = fs.readdirSync(TOKENS_DIR);
+        // Default paths (relative to this script when running in the repo)
+        let tokensDir = path.join(__dirname, '../src/tokens');
+        let outputFile = path.join(__dirname, '../tokens.json');
+
+        // Check for user config
+        const configPath = path.join(process.cwd(), 'substrata.config.js');
+        if (fs.existsSync(configPath)) {
+            console.log('Found substrata.config.js');
+            const config = require(configPath);
+            if (config.tokens) {
+                tokensDir = path.resolve(process.cwd(), config.tokens);
+            }
+            if (config.output) {
+                outputFile = path.resolve(process.cwd(), config.output);
+            }
+        }
+
+        if (!fs.existsSync(tokensDir)) {
+            console.error(`❌ Tokens directory not found: ${tokensDir}`);
+            process.exit(1);
+        }
+
+        const files = fs.readdirSync(tokensDir);
         const allTokens = {};
 
-        console.log(`Scanning ${TOKENS_DIR}...`);
+        console.log(`Scanning ${tokensDir}...`);
 
         for (const file of files) {
             if (file.endsWith('.css')) {
-                const content = fs.readFileSync(path.join(TOKENS_DIR, file), 'utf8');
+                const content = fs.readFileSync(path.join(tokensDir, file), 'utf8');
                 const fileTokens = parseCssVariables(content);
 
                 // Merge into main object. 
@@ -64,9 +83,15 @@ async function generateTokens() {
         }
 
         const outputContent = JSON.stringify(allTokens, null, 2);
-        fs.writeFileSync(OUTPUT_FILE, outputContent);
+        // Ensure output directory exists
+        const outputDir = path.dirname(outputFile);
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
 
-        console.log(`✅ Generated tokens.json at ${OUTPUT_FILE}`);
+        fs.writeFileSync(outputFile, outputContent);
+
+        console.log(`✅ Generated tokens.json at ${outputFile}`);
     } catch (error) {
         console.error('❌ Error generating tokens:', error);
         process.exit(1);
