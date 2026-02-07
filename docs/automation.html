@@ -93,56 +93,51 @@
       <p>Rather than generating arbitrary styles, AI operates within a bounded design space defined by tokens.</p>
 
 
-      <h2>Real-world Use Cases to Implement Today</h2>
+      <h2>Implementation Patterns (suggestions)</h2>
+
+      <p>
+        The examples below are <strong>patterns you can implement</strong> using <code>tokens.json</code> as input.
+        Substrata does not ship these tools today — you would build them (or use AI tooling) and feed them
+        <code>tokens.json</code> from <code>npx @mikaelcarrara/substrata generate</code>.
+      </p>
 
       <h3>1. Pre-commit Design Linting</h3>
 
-      <pre><code class="language-bash"># .husky/pre-commit
+      <pre><code class="language-bash"># .husky/pre-commit — example pattern (tool not included)
 #!/bin/bash
-substrata-lint src/**/*.css --tokens=./tokens.json
-# Blocks commits with hardcoded values</code></pre>
+# hypothetical: substrata-lint src/**/*.css --tokens=./tokens.json
+# Blocks commits with hardcoded values outside token set</code></pre>
 
       <h3>2. AI-Assisted Component Library Migration</h3>
 
-      <pre><code class="language-bash"># Incremental migration
-ai migrate ./legacy-components \
-  --from chakra-ui \
-  --to substrata \
-  --preserve-behavior
-# Generates diffs for human review</code></pre>
+      <pre><code class="language-bash"># Incremental migration — example pattern (tool not included)
+# hypothetical: ai migrate ./legacy-components \
+#   --from chakra-ui --to substrata --preserve-behavior
+# Uses tokens.json as target schema; generates diffs for human review</code></pre>
 
       <h3>3. Design QA in CI/CD</h3>
 
-      <pre><code class="language-yaml"># .github/workflows/design-qa.yml
-- name: Validate Design Tokens
-  run: |
-    ai validate-pr \
-      --base main \
-      --head ${{ github.head_ref }} \
-      --tokens substrata
-    
-    # Comments on PR:
-    # "⚠️ 3 new hardcoded colors found"</code></pre>
+      <pre><code class="language-yaml"># .github/workflows/design-qa.yml — example pattern (tool not included)
+# hypothetical: ai validate-pr --base main --head ${{ github.head_ref }} --tokens ./tokens.json
+# Would comment on PR: "⚠️ 3 new hardcoded colors found"</code></pre>
 
       <h3>4. AI Code Review Bot</h3>
 
-      <pre><code class="language-typescript">// PR review bot
+      <pre><code class="language-typescript">// PR review bot — pattern you can implement today
+// Load tokens.json and pass to LLM as context
+import tokens from './tokens.json';
+
 export async function reviewPR(diff: string) {
   const prompt = `
-    Analyze this CSS diff.
-    Report violations of Substrata tokens.
+    Analyze this CSS diff. Report violations of Substrata tokens.
     Suggest token-compliant alternatives.
-    
-    Allowed tokens: ${SUBSTRATA_TOKENS}
+    Allowed tokens: ${JSON.stringify(Object.keys(tokens))}
   `;
-
   const review = await llm.analyze(prompt, diff);
   await github.comment(review);
 }</code></pre>
 
       <h2>Deep Integrations & Tooling</h2>
-
-      <h2>Substrata CLI</h2>
 
       <p>The Substrata CLI is the primary tool for <strong>authoring</strong> and <strong>automating</strong> your
         design system. It handles project initialization and the generation of machine-readable artifacts.</p>

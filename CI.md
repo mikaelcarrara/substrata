@@ -9,17 +9,28 @@ Substrata is designed to operate as a **stable, machine-readable design layer** 
 
 Tokens act as **hard constraints**, not suggestions.
 
+## Current state vs. Roadmap
+
+| Today (available) | Roadmap ([ROADMAP.md](./ROADMAP.md)) |
+|-------------------|--------------------------------------|
+| `npx @mikaelcarrara/substrata init` | JSON Schema, `validate`, `migrate` |
+| `npx @mikaelcarrara/substrata generate` → `tokens.json` | Figma Sync, VS Code Extension |
+| `npm run build:tokens` | MCP Server, auto-refactor agent |
+| CI: build tokens only | lint:tokens, breaking-change detection, lint:code, visual-regression |
+
+The sections below describe the **target CI model**. Jobs marked as *roadmap* are planned; only `build:tokens` runs today.
+
 ## Role of CI in Substrata
 
 CI is responsible for enforcing governance rules automatically.
 
 Specifically, CI ensures that:
 - tokens remain the single source of truth
-- breaking changes are detected early
-- design decisions are not bypassed by hardcoded values
+- breaking changes are detected early (roadmap)
+- design decisions are not bypassed by hardcoded values (roadmap)
 - automation and AI outputs remain constrained by tokens
 
-CI is **not optional** and **cannot be bypassed**.
+The full CI pipeline is roadmap; today, CI can at least regenerate `tokens.json` on token changes.
 
 ## Core principles
 
@@ -32,110 +43,66 @@ CI is **not optional** and **cannot be bypassed**.
 ## Canonical inputs and outputs
 
 ### Inputs
-- `src/tokens/**` — canonical token definitions
-- `design-contract.json` — mapping between tokens and design tools
-- Source code from consumer projects (for validation)
+- `src/tokens/**` — canonical token definitions (CSS variables)
 
-### Outputs
-- `substrata.css` — CSS Custom Properties
-- `substrata.json` — token data for tools and agents
+### Outputs (today)
+- `src/substrata.css` — CSS Custom Properties (built from tokens)
+- `tokens.json` — machine-readable token data for tools and agents (from `substrata generate`)
+
+### Outputs (roadmap)
 - `substrata.d.ts` — TypeScript types
+- `design-contract.json` — mapping between tokens and design tools
 - CI reports (lint, breaking changes, audits)
 
-## Required CI jobs
+## CI jobs
 
-### 1. build:tokens
+### 1. build:tokens ✓ (available today)
 
 **Purpose**  
-Generate all distributable artifacts from the canonical token source.
+Generate `tokens.json` from the canonical token source.
 
 **Responsibilities**
-- Read canonical token definitions
-- Generate:
-  - `substrata.css`
-  - `substrata.json`
-  - `substrata.d.ts`
-- Ensure deterministic output
+- Read `src/tokens/**/*.css`
+- Generate `tokens.json` via `npx @mikaelcarrara/substrata generate` or `npm run build:tokens`
 
 **Failure conditions**
-- Invalid token schema
-- Non-deterministic generation
-- Missing artifacts
+- Tokens directory not found
+- Generation script error
 
-### 2. lint:tokens
+### 2. lint:tokens *(roadmap)*
 
 **Purpose**  
 Validate the structural and semantic correctness of tokens.
 
-**Validations**
-- Schema compliance
-- Naming conventions
-- Alias resolution
-- Deprecated token usage
-- Token type consistency
+**Validations** — Schema compliance, naming conventions, alias resolution, deprecated usage, type consistency.
 
-**Failure conditions**
-- Invalid schema
-- Broken references
-- Invalid token naming
-- Illegal value changes
+**Failure conditions** — Invalid schema, broken references, invalid naming.
 
-### 3. breaking-change detection
+### 3. breaking-change detection *(roadmap)*
 
 **Purpose**  
-Detect changes that break the token contract.
+Detect changes that break the token contract (removal, rename, value change).
 
-**Detected as breaking**
-- Token removal
-- Token rename
-- Token value change
-- Semantic meaning change
+**Behavior** — CI fails by default; requires approval and semver major bump.
 
-**Behavior**
-- CI fails by default
-- Requires explicit approval from category owner
-- Requires semver major bump
-
-### 4. lint:code (token-aware)
+### 4. lint:code (token-aware) *(roadmap)*
 
 **Purpose**  
 Prevent hardcoded design values from entering codebases.
 
-**Checks**
-- Detect raw colors, spacing, font sizes, radii
-- Compare against allowed token whitelist
-- Report violations with suggested replacements
+**Checks** — Detect raw colors, spacing, font sizes, radii; compare against token whitelist.
 
-**Use cases**
-- PR validation
-- Automated design QA
-- Large-scale refactors
-
-### 5. visual-regression (optional but recommended)
+### 5. visual-regression *(roadmap, optional)*
 
 **Purpose**  
-Ensure that token refactors do not unintentionally change visuals.
+Ensure token refactors do not unintentionally change visuals.
 
-**Behavior**
-- Compare before/after snapshots
-- Validate visual equivalence
-- Required for large-scale token migrations
-
-### 6. audit-log
+### 6. audit-log *(roadmap)*
 
 **Purpose**  
-Ensure traceability and compliance.
+Ensure traceability (token generation, refactors, AI-assisted changes).
 
-**Logs**
-- Token generation
-- Refactors executed by automation
-- AI-assisted changes
-- Versioned outputs
-
-**Requirement**
-- Logs must be stored and reviewable
-
-## Example CI job
+## Example CI (works today)
 
 ```yaml
 name: Tokens CI
@@ -144,37 +111,43 @@ on:
   pull_request:
     paths:
       - 'src/tokens/**'
+      - 'scripts/**'
       - 'package.json'
+      - 'substrata.config.js'
 
 jobs:
   build-tokens:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build:tokens
-      - run: npm run lint:tokens
+```
+
+## Example CI (roadmap — full pipeline)
+
+```yaml
+# Future: when lint:tokens, detect:breaking, lint:tokens-check exist
+jobs:
+  build-tokens:
+    # ... as above ...
+    - run: npm run lint:tokens
 
   breaking-changes:
-    runs-on: ubuntu-latest
     needs: build-tokens
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm run detect:breaking
+    run: npm run detect:breaking
 
   validate-code:
-    runs-on: ubuntu-latest
     needs: build-tokens
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm run lint:tokens-check
+    run: npm run lint:tokens-check
 
   visual-regression:
-    runs-on: ubuntu-latest
-    if: needs.breaking-changes.result == 'success'
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm run visual-regression  
+    needs: [build-tokens, breaking-changes]
+    run: npm run visual-regression
 ```
 
 ## AI-assisted workflows
@@ -195,7 +168,9 @@ AI executes within constraints.
 
 ---
 
-## Example automation use cases
+## Example automation use cases (implementation patterns)
+
+These are patterns you can implement using `tokens.json` as input. Substrata does not ship these tools; see [docs/automation](./docs/automation.html) for details.
 
 - Generate UI components constrained by tokens
 - Validate CSS for design consistency

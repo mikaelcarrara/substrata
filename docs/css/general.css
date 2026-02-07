@@ -7,6 +7,10 @@ body {
   padding-top: 66px;
 }
 
+h2 {
+  margin-top: 40px;
+}
+
 .grid {
   display: flex;
   align-items: top;
@@ -47,6 +51,11 @@ main section {
 
 main .card {
   margin-bottom: var(--space-6);
+}
+
+.typography h2,
+.typography h3 {
+  margin-top: 20px;
 }
 
 .typography p {
