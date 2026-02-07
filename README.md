@@ -48,14 +48,20 @@ Read more in [W3C Alignment](./docs/w3c-alignment.html).
 
 ## Installation
 
-### Via CLI (Recommended)
+### Via NPM (Recommended)
+
+```bash
+npm install @mikaelcarrara/substrata
+```
+
+### Via CLI
 
 ```bash
 # Initialize configuration
 npx substrata init
 
 # Generate machine-readable tokens
-npm run build:tokens
+npx substrata generate
 ```
 
 ### Manual Download
@@ -73,34 +79,34 @@ Or download directly and include in your project.
 Substrata is designed to be consumed, not imposed. You can use it in multiple ways:
 
 ### 1. Plain CSS
-Import the full system or valid subsets:
+Import the full system or valid subsets from the package:
 ```css
 /* Import everything */
-@import "path/to/substrata/src/substrata.css";
+@import "@mikaelcarrara/substrata/src/substrata.css";
 
 /* Or just tokens */
-@import "path/to/substrata/src/tokens.css";
+@import "@mikaelcarrara/substrata/src/tokens/colors.css";
 ```
 
 ### 2. Tailwind CSS
 Substrata feeds Tailwind. It does not replace it.
 ```css
-@import "path/to/substrata/src/tokens.css";
+@import "@mikaelcarrara/substrata/src/substrata.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
-*See [Getting Started](./docs/getting-started.html) for `tailwind.config.js` mapping.*
+*See [Consumption Strategies](./docs/consumption.html) for `tailwind.config.js` mapping.*
 
-### 3. CSS-in-JS
-Use tokens as values in your styled components:
+### 3. JavaScript / TypeScript
+Import tokens as a JSON object:
 ```js
-import "path/to/substrata/src/tokens.css";
+import tokens from '@mikaelcarrara/substrata';
 
 const Button = styled.button`
-  padding: var(--space-3) var(--space-4);
-  background: var(--brand-500);
-  border-radius: var(--radius-md);
+  padding: ${tokens.space[3].value} ${tokens.space[4].value};
+  background: ${tokens.color.brand[500].value};
+  border-radius: ${tokens.radius.md.value};
 `;
 ```
 

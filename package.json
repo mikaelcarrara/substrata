@@ -16,7 +16,7 @@
         "css-variables"
     ],
     "author": "Mikael Carrara",
-    "license": "ISC",
+    "license": "MIT",
     "files": [
         "bin",
         "scripts",
