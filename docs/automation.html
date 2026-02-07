@@ -159,28 +159,28 @@ export async function reviewPR(diff: string) {
       <h3>Available Tooling (v1.0)</h3>
 
       <pre><code class="language-bash"># Official CLI
-npm install -g substrata
+npm install -g @mikaelcarrara/substrata
 
 # Initialize project
-$ substrata init
+$ npx @mikaelcarrara/substrata init
 
 # Generate machine-readable tokens
-$ substrata generate</code></pre>
+$ npx @mikaelcarrara/substrata generate</code></pre>
 
       <h3>Roadmap: Future Integration</h3>
 
       <h4>1. Advanced Validation & Migration</h4>
 
       <pre><code class="language-bash"># Future features:
-$ substrata validate ./src --strict
-$ substrata migrate --from tailwind
-$ substrata generate button --variant primary
-$ substrata export --format figma-tokens</code></pre>
+$ npx @mikaelcarrara/substrata validate ./src --strict
+$ npx @mikaelcarrara/substrata migrate --from tailwind
+$ npx @mikaelcarrara/substrata generate button --variant primary
+$ npx @mikaelcarrara/substrata export --format figma-tokens</code></pre>
 
       <h4>2. JSON Schema & TypeScript Types</h4>
 
       <pre><code class="language-typescript">// Should have autocomplete
-import { SubstrataTokens } from '@substrata/tokens';
+import { SubstrataTokens } from '@mikaelcarrara/substrata';
 
 type SpacingToken = SubstrataTokens['spacing']; // '1' | '2' | '3' | ...
 type ColorToken = SubstrataTokens['colors']['primary']; // '100' | '200' | ...

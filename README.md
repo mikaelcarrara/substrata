@@ -58,10 +58,10 @@ npm install @mikaelcarrara/substrata
 
 ```bash
 # Initialize configuration
-npx substrata init
+npx @mikaelcarrara/substrata init
 
 # Generate machine-readable tokens
-npx substrata generate
+npx @mikaelcarrara/substrata generate
 ```
 
 ### Manual Download
