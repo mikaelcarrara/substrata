@@ -46,21 +46,25 @@ Read more in [W3C Alignment](./docs/w3c-alignment.html).
 
 ---
 
-## Installation
+## Installation & Usage
 
-### Via NPM (Recommended)
+Substrata can be used for **Consumption** (using the tokens) or **Authoring** (creating your own tokens).
+
+### 1. Consumer (Recommended)
+If you just want to use the default Substrata tokens in your project:
 
 ```bash
 npm install @mikaelcarrara/substrata
 ```
 
-### Via CLI
+### 2. Author/Automation
+If you want to use Substrata as a framework to manage your own design tokens:
 
 ```bash
-# Initialize configuration
+# Initialize configuration and folder structure
 npx @mikaelcarrara/substrata init
 
-# Generate machine-readable tokens
+# Generate machine-readable tokens.json
 npx @mikaelcarrara/substrata generate
 ```
 

@@ -156,16 +156,33 @@ export async function reviewPR(diff: string) {
 
       <h2>Deep Integrations & Tooling</h2>
 
-      <h3>Available Tooling (v1.0)</h3>
+      <h2>Substrata CLI</h2>
 
-      <pre><code class="language-bash"># Official CLI
-npm install -g @mikaelcarrara/substrata
+      <p>The Substrata CLI is the primary tool for <strong>authoring</strong> and <strong>automating</strong> your
+        design system. It handles project initialization and the generation of machine-readable artifacts.</p>
 
-# Initialize project
-$ npx @mikaelcarrara/substrata init
+      <h3>1. Initialize Project</h3>
+      <p>The <code>init</code> command sets up the necessary directory structure and configuration for a new Substrata
+        project.</p>
 
-# Generate machine-readable tokens
-$ npx @mikaelcarrara/substrata generate</code></pre>
+      <pre><code class="language-bash">npx @mikaelcarrara/substrata init</code></pre>
+
+      <p>This command performs the following actions:</p>
+      <ul>
+        <li>Creates <code>substrata.config.js</code> to define source and output paths.</li>
+        <li>Creates the <code>src/tokens/</code> directory.</li>
+        <li>Populates <code>src/tokens/</code> with sample <code>colors.css</code> and <code>spacing.css</code> files.
+        </li>
+      </ul>
+
+      <h3>2. Generate Tokens</h3>
+      <p>The <code>generate</code> command processes your CSS files inside the tokens directory and produces a
+        machine-readable <code>tokens.json</code>.</p>
+
+      <pre><code class="language-bash">npx @mikaelcarrara/substrata generate</code></pre>
+
+      <p>This file acts as the bridge between your CSS variables and external tools like AI agents, linters, or other
+        framework-specific configuration (e.g., Tailwind).</p>
 
       <h3>Roadmap: Future Integration</h3>
 
