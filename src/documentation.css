@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  padding-top: 66px;
 }
 
 .grid {
@@ -89,7 +90,12 @@ footer a:hover {
 
 header {
   background: var(--neutral-100);
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid var(--neutral-200);
 }
 
 .menu-toggle {
@@ -482,6 +488,11 @@ table td {
 @media (max-width: 800px) {
   body {
     overflow-x: hidden;
+    padding-top: 0;
+  }
+
+  header {
+    position: relative;
   }
 
   header section {
