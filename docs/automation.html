@@ -92,261 +92,122 @@
 
       <p>Rather than generating arbitrary styles, AI operates within a bounded design space defined by tokens.</p>
 
-      <h2>Example use cases</h2>
-
-      <ul>
-        <li>Generate UI components from design prompts constrained by tokens</li>
-        <li>Automatically validate color, spacing, and typography consistency</li>
-        <li>Refactor UI implementations across frameworks while preserving design intent</li>
-        <li>Build design-to-code pipelines where tokens act as constraints, not suggestions.</li>
-      </ul>
-
-      <h2>Why tokens matter for AI</h2>
-
-      <ul>
-        <li>Tokens reduce ambiguity</li>
-        <li>Subjective design decisions become explicit, machine-readable constraints</li>
-        <li>Automation becomes predictable, auditable, and safe at scale</li>
-      </ul>
-
-      <h2>Example prompts using tokens as input</h2>
-
-      <h3>1. Generate a component constrained by tokens</h3>
-
-      <pre><code class="language-text">Generate a Card component using only the following design tokens:
-
-- Colors: neutral-0, neutral-200, neutral-900
-- Spacing: space-3, space-4, space-5
-- Radius: radius-md
-- Typography: font-size-md, font-weight-medium
-
-Do not introduce new colors, spacing values, or font sizes.
-Output plain HTML and CSS.</code></pre>
-
-      <h4>Enforces</h4>
-
-      <ul>
-        <li>No arbitrary values</li>
-        <li>No framework assumptions</li>
-        <li>Tokens act as hard constraints</li>
-      </ul>
-
-      <h3>2. Validate a component against tokens</h3>
-
-      <pre><code class="language-text">Analyze the following CSS and report any values that are not mapped to the provided tokens:
-
-- Allowed spacing tokens: space-1 to space-6
-- Allowed colors: neutral scale and brand scale
-- Allowed font sizes: font-size-sm, font-size-md, font-size-lg
-
-Return a list of violations and suggested token replacements.</code></pre>
-
-      <h4>Use case</h4>
-
-      <ul>
-        <li>Automated design linting</li>
-        <li>CI validation</li>
-        <li>Consistency checks at scale</li>
-      </ul>
-
-      <h3>3. Refactor a component across frameworks</h3>
-
-      <pre><code class="language-text">Refactor this React component to plain HTML and CSS.
-
-Preserve all design decisions by replacing hardcoded values with the following tokens:
-- Colors
-- Spacing
-- Typography
-- Border radius
-
-Do not change the visual output.
-Do not introduce framework-specific patterns.</code></pre>
-
-      <h4>Outcome</h4>
-
-      <ul>
-
-        <li>Same design</li>
-        <li>Different implementation</li>
-        <li>Tokens remain the invariant layer</li>
-      </ul>
-
-      <h3>4. Design-to-code from intent, not pixels</h3>
-
-      <pre><code class="language-text">Create a form layout based on these constraints:
-
-- Use Substrata form tokens and base styles
-- Inputs must follow spacing and typography tokens
-- Focus states must use brand tokens
-- No custom values allowed
-
-The result should be accessible and framework-agnostic.</code></pre>
-
-      <h4>Why this works</h4>
-
-      <ul>
-        <li>The prompt describes rules, not visuals</li>
-        <li>Tokens replace subjective interpretation</li>
-      </ul>
-
-      <h3>5. Token-driven variation generation</h3>
-
-      <pre><code class="language-text">Generate three visual variants of the same component.
-
-The only allowed difference between variants is:
-- brand-300
-- brand-500
-- brand-700
-
-All other tokens must remain unchanged.</code></pre>
-
-      <h4>Use case</h4>
-
-      <ul>
-        <li>Theming</li>
-        <li>A/B testing</li>
-        <li>Brand adaptation without redesign</li>
-      </ul>
-
-      <h2>AI Prompt Templates (Token-driven)</h2>
+      <h2>Requirements for Automation</h2>
 
       <p>
-        These templates can be reused in automation pipelines, CI workflows, or AI agents.
+        To enable the use cases below, you must first generate the machine-readable <code>tokens.json</code> file.
+        This file acts as the bridge between your CSS variables and external tools (linters, AI agents, CI/CD).
       </p>
 
-      <h3>Component Generation Template</h3>
+      <pre><code class="language-bash"># 1. Install dependencies
+npm install
 
-      <p>
-        <strong>Purpose:</strong><br>Generate UI components strictly constrained by design tokens.
-      </p>
+# 2. Build tokens.json
+npm run build:tokens
 
-      <pre><code class="language-text">ROLE:
-You are a UI code generator constrained by design tokens.
- 
-INPUT:
-- Component type: {{component_name}}
-- Allowed tokens:
-- Colors: {{color_tokens}}
-- Spacing: {{spacing_tokens}}
-- Typography: {{typography_tokens}}
-- Radius: {{radius_tokens}}
+# Output: ./tokens.json</code></pre>
 
-RULES:
-- Do not introduce values outside the provided tokens.
-- Do not assume any framework.
-- Output plain HTML and CSS only.
+      <h2>Real-world Use Cases to Implement Today</h2>
 
-OUTPUT:
-- Semantic HTML
-- Minimal, token-based CSS</code></pre>
+      <h3>1. Pre-commit Design Linting</h3>
 
-      <h3>Token validation / linting template</h3>
+      <pre><code class="language-bash"># .husky/pre-commit
+#!/bin/bash
+substrata-lint src/**/*.css --tokens=./tokens.json
+# Blocks commits with hardcoded values</code></pre>
 
-      <p>
-        <strong>Purpose:</strong><br>Detect design inconsistencies automatically.
-      </p>
+      <h3>2. AI-Assisted Component Library Migration</h3>
 
-      <pre><code class="language-text">ROLE:
-You are a design token validator.
+      <pre><code class="language-bash"># Incremental migration
+$ ai migrate ./legacy-components \
+  --from chakra-ui \
+  --to substrata \
+  --preserve-behavior
+# Generates diffs for human review</code></pre>
 
-INPUT:
-- Source code: {{code_input}}
-- Allowed tokens:
-- Colors: {{color_tokens}}
-- Spacing: {{spacing_tokens}}
-- Typography: {{typography_tokens}}
+      <h3>3. Design QA in CI/CD</h3>
 
-TASK:
-- Identify any hardcoded values not mapped to tokens.
-- Suggest the closest valid token replacement.
+      <pre><code class="language-yaml"># .github/workflows/design-qa.yml
+- name: Validate Design Tokens
+  run: |
+    ai validate-pr \
+      --base main \
+      --head ${{ github.head_ref }} \
+      --tokens substrata
+    
+    # Comments on PR:
+    # "⚠️ 3 new hardcoded colors found"</code></pre>
 
-OUTPUT:
-- List of violations
-- Line reference (if available)
-- Suggested token</code></pre>
+      <h3>4. AI Code Review Bot</h3>
 
-      <h3>Cross-Framework Refactor Template</h3>
+      <pre><code class="language-typescript">// PR review bot
+export async function reviewPR(diff: string) {
+  const prompt = `
+    Analyze this CSS diff.
+    Report violations of Substrata tokens.
+    Suggest token-compliant alternatives.
+    
+    Allowed tokens: ${SUBSTRATA_TOKENS}
+  `;
 
-      <p>
-        <strong>Purpose:</strong><br>Preserve design decisions while changing implementation.
-      </p>
+  const review = await llm.analyze(prompt, diff);
+  await github.comment(review);
+}</code></pre>
 
-      <pre><code class="language-text">ROLE:
-You are a refactoring agent.
+      <h2>Deep Integrations & Tooling</h2>
 
-INPUT:
-- Source component: {{source_code}}
-- Target output: {{target_format}}
-- Design tokens: {{token_set}}
+      <h3>Available Tooling (v1.0)</h3>
 
-RULES:
-- Preserve visual output.
-- Replace all hardcoded values with tokens.
-- Do not introduce framework-specific abstractions.
+      <pre><code class="language-bash"># Official CLI
+npm install -g substrata
 
-OUTPUT:
-- Refactored component using only tokens</code></pre>
+# Initialize project
+$ substrata init
 
-      <h3>Design-to-Code Constraint Template</h3>
+# Generate machine-readable tokens
+$ substrata generate</code></pre>
 
-      <p>
-        <strong>Purpose:</strong><br>Generate UI from intent, not from visual guesswork.
-      </p>
+      <h3>Roadmap: Future Integration</h3>
 
-      <pre><code class="language-text">ROLE:
-You are a design-to-code generator.
+      <h4>1. Advanced Validation & Migration</h4>
 
-INPUT:
-- UI intent: {{intent_description}}
-- Token system: {{token_set}}
+      <pre><code class="language-bash"># Future features:
+$ substrata validate ./src --strict
+$ substrata migrate --from tailwind
+$ substrata generate button --variant primary
+$ substrata export --format figma-tokens</code></pre>
 
-CONSTRAINTS:
-- Use only provided tokens
-- Respect accessibility best practices
-- No custom values
+      <h4>2. JSON Schema & TypeScript Types</h4>
 
-OUTPUT:
-- Token-compliant UI markup</code></pre>
+      <pre><code class="language-typescript">// Should have autocomplete
+import { SubstrataTokens } from '@substrata/tokens';
 
-      <h3>Controlled Variation Template</h3>
+type SpacingToken = SubstrataTokens['spacing']; // '1' | '2' | '3' | ...
+type ColorToken = SubstrataTokens['colors']['primary']; // '100' | '200' | ...
 
-      <p>
-        <strong>Purpose:</strong><br>Create safe visual variations without redesign.
-      </p>
+// Build-time validation
+const Button = styled.button<{ spacing: SpacingToken }>`
+  padding: var(--space-${props => props.spacing});
+`;</code></pre>
 
-      <pre><code class="language-text">ROLE:
-You are a variation generator.
+      <h4>3. Figma/Penpot Integration</h4>
 
-INPUT:
-- Base component: {{component_code}}
-- Variable tokens: {{variable_tokens}}
+      <pre><code class="language-javascript">// Official Figma Plugin
+export async function syncToSubstrata() {
+  const figmaTokens = await figma.getLocalVariables();
+  const substrataTokens = transformToSubstrata(figmaTokens);
 
-RULES:
-- Only variable tokens may change.
-- All other tokens must remain identical.
+  await fs.writeFile('./tokens.json', substrataTokens);
+}</code></pre>
 
-OUTPUT:
-- Variant A
-- Variant B
-- Variant C</code></pre>
+      <h4>4. AI Context Injection Helper</h4>
 
-      <h2>How this fits an AI pipeline</h2>
+      <pre><code class="language-typescript">// For use with Cursor, Copilot, etc.
+import { injectSubstrataContext } from '@substrata/ai';
 
-      <ul>
-        <li>Design tokens define the contract</li>
-        <li>Prompts act as executable specifications</li>
-        <li>AI operates as a constrained executor, not a decision-maker</li>
-      </ul>
-
-      <h3>This enables Substrata to integrate with:</h3>
-
-      <ul>
-        <li>CI validation</li>
-        <li>Design QA automation</li>
-        <li>Design-to-code agents</li>
-        <li>Multi-framework refactors</li>
-        <li>AI-assisted theming</li>
-      </ul>
+// Automatically adds tokens to the context window
+const contextFile = injectSubstrataContext('./tokens.json');
+// → Generates .cursorrules, .github/copilot-instructions.md</code></pre>
 
     </section>
 

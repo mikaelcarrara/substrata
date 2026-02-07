@@ -48,6 +48,18 @@ Read more in [W3C Alignment](./docs/w3c-alignment.html).
 
 ## Installation
 
+### Via CLI (Recommended)
+
+```bash
+# Initialize configuration
+npx substrata init
+
+# Generate machine-readable tokens
+npm run build:tokens
+```
+
+### Manual Download
+
 Clone or download from GitHub:
 
 ```bash

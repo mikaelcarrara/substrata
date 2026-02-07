@@ -1,0 +1,20 @@
+{
+    "name": "substrata",
+    "version": "1.0.0",
+    "description": "Framework-agnostic design tokens system",
+    "bin": {
+        "substrata": "./bin/substrata.js"
+    },
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build:tokens": "node scripts/generate-tokens.js"
+    },
+    "keywords": [
+        "design-system",
+        "design-tokens",
+        "css-variables"
+    ],
+    "author": "Mikael Carrara",
+    "license": "ISC"
+}
