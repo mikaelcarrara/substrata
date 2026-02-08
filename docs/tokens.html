@@ -84,7 +84,7 @@
 
       <pre><code class="language-css">--space-1
 --font-size-md
---color-neutral-900
+--neutral-900
 --radius-md</code></pre>
 
       <p>
@@ -96,7 +96,7 @@
       <h3>Tokens are:</h3>
 
       <ul>
-        <li>Named CSS variables (--space-1, --color-brand-500)</li>
+        <li>Named CSS variables (--space-1, --brand-500)</li>
         <li>Explicit design decisions</li>
         <li>Stable and versionable contracts</li>
         <li>Independent from layout and components</li>
@@ -168,12 +168,12 @@
 
       <h4>Examples</h4>
 
-      <pre><code class="language-css">--color-brand-300
---color-brand-500
---color-neutral-0
---color-neutral-900</code></pre>
+      <pre><code class="language-css">--neutral-0
+--neutral-900
+--brand-300
+--brand-500</code></pre>
 
-      <p>These tokens are value-based, without semantic context.</p>
+      <p>Neutrals and brand use numeric scales; feedback colors use semantic names (<code>--color-success</code>, <code>--color-warning</code>, <code>--color-danger</code>).</p>
 
       <h3>Radius and borders</h3>
 
@@ -186,7 +186,8 @@
       <pre><code class="language-css">--radius-sm
 --radius-md
 --radius-lg
---border-width-hairline</code></pre>
+--border-width
+--border-color</code></pre>
 
       <p>Used to ensure consistent geometry across all consumers.</p>
 
@@ -198,11 +199,11 @@
 
       <h4>Examples</h4>
 
-      <pre><code class="language-css">--elevation-1
---elevation-2
---elevation-3</code></pre>
+      <pre><code class="language-css">--shadow-sm
+--shadow-md
+--shadow-lg</code></pre>
 
-      <p>Elevation tokens express relative depth, not specific components.</p>
+      <p>Shadow tokens express relative depth (file: <code>elevation.css</code>), not specific components.</p>
 
       <h3>Motion</h3>
 
@@ -212,11 +213,11 @@
 
       <h4>Examples</h4>
 
-      <pre><code class="language-css">--motion-duration-fast
---motion-duration-medium
---motion-easing-standard</code></pre>
+      <pre><code class="language-css">--motion-fast
+--motion-normal
+--motion-slow</code></pre>
 
-      <p>Motion tokens control timing and rhythm, not animations themselves.</p>
+      <p>Motion tokens define duration scale (no easing tokens yet). They control timing and rhythm, not animations themselves.</p>
 
       <h3>Opacity</h3>
 
@@ -254,10 +255,14 @@
 
       <h4>Examples</h4>
 
-      <pre><code class="language-css">--color-text-primary
+      <pre><code class="language-css">--color-bg
+--color-surface
+--color-text-primary
 --color-text-secondary
---color-background-surface
---color-border-subtle</code></pre>
+--color-border
+--color-brand-primary
+--color-brand-hover
+--color-text-inverse</code></pre>
 
       <p>Semantic aliases allow design intent to evolve without changing the underlying scale.</p>
 

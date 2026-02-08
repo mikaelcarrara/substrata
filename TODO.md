@@ -13,7 +13,7 @@ Tasks to complete the first version of Substrata:
 - [x] **Modular CSS** - Refactor documentation styles into manageable modules
 
 ## Design System
-- [ ] **Review Tokens** - Audit and validate all design tokens for consistency and completeness 
+- [x] **Review Tokens** - Audit and validate all design tokens for consistency and completeness (see [TOKENS-AUDIT.md](TOKENS-AUDIT.md)) 
 - [x] **CLI Logic** - Make token generation script configuration-aware (`substrata.config.js`)
 
 ## Distribution & Automation
