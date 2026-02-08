@@ -16,6 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
+          body_path: RELEASE_NOTES.md
+          # Fallback to auto-generated notes if body_path is empty or missing, 
+          # but usually body_path takes precedence.
           generate_release_notes: true
