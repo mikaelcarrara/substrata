@@ -7,7 +7,18 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid var(--neutral-200);
+}
+
+@media (max-width: 767px) {
+  header {
+    position: static;
+    background: rgba(255, 255, 255, 1); /* Totalmente opaco no mobile */
+    /* Remover outras propriedades de posicionamento fixo */
+    top: auto;
+    left: auto;
+    width: auto;
+    z-index: auto;
+  }
 }
 
 .menu-toggle {
