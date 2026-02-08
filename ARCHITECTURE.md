@@ -6,6 +6,11 @@ This document provides a comprehensive view of the **Substrata** design tokens s
 
 Substrata acts as the bridge between design intent and code implementation. It is designed to be **framework-agnostic**, serving as a central repository for design decisions that propagate to various platforms.
 
+### 1.1. Inspired by Atomic Concepts
+
+The organization of tokens in Substrata, especially the distinction between 'Atomic Tokens' and 'Semantic Aliases', is inspired by principles of methodologies such as Atomic Design. 'Atomic Tokens' represent the smallest units of design, such as base colors and spacing, which are agnostic to their usage context. They serve as the immutable foundation upon which 'Semantic Aliases' are built, allowing the design system to be flexible and scalable, without imposing a specific development methodology, but offering a clear mental model for design structuring.
+
+
 ```mermaid
 graph TD
     %% Layers
