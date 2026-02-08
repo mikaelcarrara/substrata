@@ -1,6 +1,6 @@
 {
     "name": "@mikaelcarrara/substrata",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Framework-agnostic design tokens system",
     "bin": {
         "substrata": "./bin/substrata.js"
