@@ -16,7 +16,7 @@ graph TD
 
     subgraph "Layer 2 - Substrata System"
         direction TB
-        Tokens[Atomic Tokens (Variables)]
+        Tokens[Atomic Tokens Variables]
         Aliases[Semantic Aliases]
         Base[Base Styles]
         
