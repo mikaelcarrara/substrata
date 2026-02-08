@@ -9,14 +9,14 @@ Substrata acts as the bridge between design intent and code implementation. It i
 ```mermaid
 graph TD
     %% Layers
-    subgraph "Layer 1: Design Definition"
+    subgraph "Layer 1 - Design Definition"
         Figma[Figma / Design Tools]
         Intent[Design Decisions]
     end
 
-    subgraph "Layer 2: Substrata System"
+    subgraph "Layer 2 - Substrata System"
         direction TB
-        Tokens[Atomic Tokens<br/>(Variables)]
+        Tokens[Atomic Tokens (Variables)]
         Aliases[Semantic Aliases]
         Base[Base Styles]
         
@@ -24,13 +24,13 @@ graph TD
         Aliases --> Base
     end
 
-    subgraph "Layer 3: Consumption Adapters"
+    subgraph "Layer 3 - Consumption Adapters"
         Vanilla[Direct CSS Import]
         Tailwind[Tailwind Config]
         CSSJS[CSS-in-JS]
     end
 
-    subgraph "Layer 4: End Applications"
+    subgraph "Layer 4 - End Applications"
         WebApp[Web Applications]
         Marketing[Marketing Sites]
         Dashboards[Dashboards/Tools]
