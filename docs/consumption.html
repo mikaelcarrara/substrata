@@ -97,6 +97,15 @@ module.exports = {
     colors: {
       surface: 'var(--color-surface)',
       text: 'var(--color-text-primary)',
+      brand: {
+        300: 'var(--brand-300)',
+        500: 'var(--brand-500)',
+        700: 'var(--brand-700)',
+      },
+      neutral: {
+        0: 'var(--neutral-0)',
+        900: 'var(--neutral-900)',
+      },
     },
     borderRadius: { md: 'var(--radius-md)' },
   },
@@ -150,13 +159,23 @@ Output plain CSS.</code></pre>
       <pre><code class="language-javascript">import tokens from '../tokens.json';
 
 // Usage in JS logic
-const brandColor = tokens.color.brand.primary.value; // "var(--brand-500)"
+const brand500 = tokens.brand[500].value; // e.g. "#3b82f6" or "var(--brand-500)"
 
 // Usage in styling libraries
 const Card = styled.div`
   background: ${tokens.color.surface.value};
   padding: ${tokens.space[4].value};
 `;</code></pre>
+
+      <h2>Source Examples</h2>
+      <p>Explore the consumption examples used across different approaches:</p>
+      <ul>
+        <li><a href="../src/consumption/plain.css" target="_blank">Plain CSS</a></li>
+        <li><a href="../src/consumption/tailwind.config.js" target="_blank">Tailwind Config</a></li>
+        <li><a href="../src/consumption/styled-components.js" target="_blank">styled-components</a></li>
+        <li><a href="../src/consumption/vanilla-extract.css.ts" target="_blank">vanilla-extract</a></li>
+        <li><a href="../src/consumption/sass-example.scss" target="_blank">Sass / SCSS</a></li>
+      </ul>
 
     </section>
 

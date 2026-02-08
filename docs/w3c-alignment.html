@@ -186,7 +186,7 @@ Application (Consumption)</code></pre>
       <h3>Substrata responsibilities</h3>
 
       <ul>
-        <li>Centralize `tokens.json` and `tokens.css`</li>
+        <li>Centralize `tokens.json` and `src/substrata.css`</li>
         <li>Preserve original token semantics</li>
         <li>Avoid framework or runtime assumptions</li>
         <li>Enable versioning, auditing, and traceability</li>
@@ -211,8 +211,8 @@ Application (Consumption)</code></pre>
 
       <pre><code class="language-text">substrata/
 ├── tokens.json
-├── tokens.css
-└── metadata.json</code></pre>
+├── src/substrata.css
+└── src/tokens/*.css</code></pre>
 
       <p>This layer directly maps to the W3C Token Source concept.</p>
 
@@ -236,7 +236,7 @@ Application (Consumption)</code></pre>
 
       <pre><code class="language-css">.card {
   padding: var(--space-4);
-  background: var(--color-surface-default);
+  background: var(--color-surface);
 }</code></pre>
 
       <h3>Applied principles</h3>

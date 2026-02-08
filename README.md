@@ -152,6 +152,36 @@ const Button = styled.button`
 
 ---
 
+## Naming Conventions
+
+Tokens use kebab-case and semantic grouping:
+- Colors: `neutral-100`, `brand-500`, `color-surface`, `color-text-primary`
+- Spacing: `space-1` ... `space-6`
+- Typography: `font-size-sm`, `font-weight-bold`, `line-height-normal`
+- Radius/Borders: `radius-sm`, `border-width`
+- Motion/Elevation/Opacity: `duration-sm`, `shadow-sm`, `opacity-80`
+- Breakpoints: `breakpoint-sm`, `breakpoint-md`, `breakpoint-lg`
+
+Semantic aliases (see `src/tokens/semantic-aliases.css`) map raw tokens to intended usage, e.g.:
+- Surface: `color-surface`
+- Brand: `color-brand-primary`, `color-brand-hover`
+- Text: `color-text-primary`, `color-text-inverse`
+
+These aliases help preserve intent across frameworks and refactors.
+
+---
+
+## Planned Artifacts
+
+To improve tooling and integration, the following artifacts are planned:
+- `substrata.d.ts` — TypeScript declarations for token-safe consumption
+- `design-contract.json` — Mapping between tokens and design tools (Figma variables)
+- JSON Schema for `tokens.json` — enables IDE validation and CI checks
+
+See [ROADMAP.md](./ROADMAP.md) and [GOVERNANCE.md](./GOVERNANCE.md) for progress and CI recommendations.
+
+---
+
 ## License
 
 MIT © 2026 Mikael Carrara

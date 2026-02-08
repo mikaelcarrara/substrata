@@ -157,6 +157,27 @@ If CI fails:
 
 Bypassing CI is not allowed.
 
+## Quality Assurance (QA) Checklist
+
+Before merging documentation or token changes, verify:
+
+- Build and validation
+  - `npm run build:tokens` generates `tokens.json`
+  - `npm run test:tokens` passes (schema/type/originalVariable present)
+  - `npm run lint:tokens-check` finds no hardcoded hex colors in `src/components` and `src/consumption`
+- Documentation consistency
+  - Pages reference `../src/substrata.css` and `docs/css/*.css` (no `tokens.css`)
+  - Examples in docs match real files under `src/consumption/*`
+  - Tailwind examples include `brand` and `neutral` mapping and `borderRadius` usage
+  - Semantic aliases used (`color-surface`, `color-text-primary`, `color-text-inverse`, etc.)
+  - Links and images resolve correctly
+- Naming conventions
+  - Tokens follow README conventions (kebab-case; domain grouping)
+  - Semantic aliases reflect intent, not implementation details
+- CI & deployment
+  - Tokens CI workflow runs on PR/push and passes
+  - GitHub Pages deploy uses correct path remapping for `src/` assets
+
 ## Design synchronization
 
 If your change impacts design decisions:

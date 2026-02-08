@@ -96,7 +96,7 @@ graph TD
     end
 
     subgraph "Documentation Site"
-        DocStyles[src/documentation.css]
+        DocStyles[docs/css/*.css]
         Docs[docs/*.html]
     end
 
@@ -128,6 +128,21 @@ graph TD
     Tokens --> Tailwind
     Tokens --> CSSJS
 
+    %% Consumption Examples
+    subgraph "Consumption Examples"
+        PlainCSS[src/consumption/plain.css]
+        TailwindCfg[src/consumption/tailwind.config.js]
+        StyledComponents[src/consumption/styled-components.js]
+        VanillaExtract[src/consumption/vanilla-extract.css.ts]
+        SassExample[src/consumption/sass-example.scss]
+    end
+
+    Substrata --> PlainCSS
+    Tokens --> TailwindCfg
+    Tokens --> StyledComponents
+    Tokens --> VanillaExtract
+    Tokens --> SassExample
+
     %% Styling
     classDef file fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
     classDef aggregate fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
@@ -135,7 +150,7 @@ graph TD
 
     class Typography,Spacing,Colors,OtherTokens,Base,DocStyles,Components file;
     class Substrata aggregate;
-    class Docs,UserApp,Tailwind,CSSJS consumer;
+    class Docs,UserApp,Tailwind,CSSJS,PlainCSS,TailwindCfg,StyledComponents,VanillaExtract,SassExample consumer;
 ```
 
 ## Component Breakdown
@@ -158,10 +173,17 @@ Located in `src/tokens/`, these files are the atomic units of the design system.
 The `docs/` folder contains the static HTML site that serves as the manual for Substrata.
 *   It consumes **`src/substrata.css`** to display the design system in action.
 *   It consumes **`src/components/components.css`** to show component examples.
-*   It uses **`src/documentation.css`** for its own layout and specific styling (grids, headers, code blocks).
+*   It uses **`docs/css/*.css`** for its own layout and specific styling (grids, headers, code blocks).
 
 ### 5. External Consumption
 Substrata is designed to be framework-agnostic:
 *   **Plain CSS**: Import `substrata.css`.
 *   **Tailwind**: Map `src/tokens/*.css` variables to `tailwind.config.js`.
 *   **CSS-in-JS**: Use the CSS variables directly in styled-components or emotion strings.
+
+### 6. Ferramentas e Automação
+Substrata inclui ferramentas para geração e distribuição de artefatos:
+*   **CLI (`bin/substrata.js`)**: Inicializa a estrutura (`init`) e gera tokens (`generate`).
+*   **Build de tokens (`scripts/generate-tokens.js`)**: Varre `src/tokens/*.css` e gera **`tokens.json`**.
+*   **Scripts NPM**: `build:tokens` executa a geração dos artefatos.
+*   **Artefatos de consumo**: `src/substrata.css` (CSS), `tokens.json` (JSON) — ver Governança para roadmap de `substrata.d.ts`.

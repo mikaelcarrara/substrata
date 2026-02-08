@@ -7,8 +7,10 @@
     },
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build:tokens": "node scripts/generate-tokens.js"
+        "test": "npm run test:tokens",
+        "build:tokens": "node scripts/generate-tokens.js",
+        "test:tokens": "node scripts/validate-tokens.js",
+        "lint:tokens-check": "node scripts/lint-hardcoded.js"
     },
     "keywords": [
         "design-system",

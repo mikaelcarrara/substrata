@@ -1,0 +1,32 @@
+name: Tokens CI
+
+on:
+  pull_request:
+    paths:
+      - 'src/tokens/**'
+      - 'scripts/**'
+      - 'package.json'
+  push:
+    paths:
+      - 'src/tokens/**'
+      - 'scripts/**'
+      - 'package.json'
+
+jobs:
+  validate-tokens:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install (no deps required)
+        run: echo "No dependencies required"
+      - name: Build tokens
+        run: npm run build:tokens
+      - name: Validate tokens
+        run: npm run test:tokens
+      - name: Lint hardcoded values
+        run: npm run lint:tokens-check

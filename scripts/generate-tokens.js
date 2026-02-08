@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Helper to convert kebab-case to nested object structure
-// e.g. "color-neutral-100" -> { color: { neutral: { 100: ... } } }
 function setDeep(obj, pathParts, value) {
     let current = obj;
     for (let i = 0; i < pathParts.length; i++) {
@@ -16,7 +14,22 @@ function setDeep(obj, pathParts, value) {
     }
 }
 
-function parseCssVariables(cssContent) {
+function inferTypeFromFilename(filename) {
+    const name = filename.toLowerCase();
+    if (name.includes('color')) return 'color';
+    if (name.includes('spacing')) return 'spacing';
+    if (name.includes('typography')) return 'typography';
+    if (name.includes('radius')) return 'radius';
+    if (name.includes('border')) return 'border';
+    if (name.includes('elevation') || name.includes('shadow')) return 'elevation';
+    if (name.includes('motion')) return 'motion';
+    if (name.includes('opacity')) return 'opacity';
+    if (name.includes('breakpoint')) return 'breakpoint';
+    if (name.includes('semantic')) return 'semantic';
+    return 'unknown';
+}
+
+function parseCssVariables(cssContent, fileType) {
     const tokens = {};
     const lines = cssContent.split('\n');
 
@@ -26,18 +39,31 @@ function parseCssVariables(cssContent) {
             const variableName = match[1]; // e.g. "color-neutral-100"
             const value = match[2].trim(); // e.g. "#ffffff"
 
-            // Remove "substrata-" prefix if present to cleaner structure, 
-            // or keep it if that's the preferred token name. 
-            // For now, we'll split by hyphen.
             const parts = variableName.split('-');
             setDeep(tokens, parts, {
                 value: value,
-                type: 'color', // TODO: Infer type based on file or value
+                type: fileType,
                 originalVariable: `--${variableName}`
             });
         }
     }
     return tokens;
+}
+
+function deepMerge(target, source) {
+    for (const key of Object.keys(source)) {
+        const srcVal = source[key];
+        const tgtVal = target[key];
+        if (srcVal && typeof srcVal === 'object' && !Array.isArray(srcVal)) {
+            if (!tgtVal || typeof tgtVal !== 'object' || Array.isArray(tgtVal)) {
+                target[key] = {};
+            }
+            deepMerge(target[key], srcVal);
+        } else {
+            target[key] = srcVal;
+        }
+    }
+    return target;
 }
 
 async function generateTokens() {
@@ -72,13 +98,10 @@ async function generateTokens() {
         for (const file of files) {
             if (file.endsWith('.css')) {
                 const content = fs.readFileSync(path.join(tokensDir, file), 'utf8');
-                const fileTokens = parseCssVariables(content);
+                const fileType = inferTypeFromFilename(file);
+                const fileTokens = parseCssVariables(content, fileType);
 
-                // Merge into main object. 
-                // Note: This simple merge assumes no key collisions across files at the top level
-                // that would overwrite existing objects entirely. 
-                // A deep merge would be safer for production but this suffices for flat token files.
-                Object.assign(allTokens, { ...allTokens, ...fileTokens });
+                deepMerge(allTokens, fileTokens);
             }
         }
 

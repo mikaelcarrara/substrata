@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Substrata Tokens",
+  "type": "object",
+  "additionalProperties": {
+    "anyOf": [
+      {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "color",
+              "spacing",
+              "typography",
+              "radius",
+              "border",
+              "elevation",
+              "motion",
+              "opacity",
+              "breakpoint",
+              "semantic",
+              "unknown"
+            ]
+          },
+          "originalVariable": {
+            "type": "string",
+            "pattern": "^--[\\w-]+$"
+          }
+        },
+        "required": ["value", "type", "originalVariable"],
+        "additionalProperties": false
+      },
+      { "$ref": "#" }
+    ]
+  }
+}

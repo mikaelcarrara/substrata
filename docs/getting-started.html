@@ -98,7 +98,10 @@
 
       <h2>Or import only what you need</h2>
 
-      <pre><code class="language-css">@import "path/to/substrata/src/tokens.css";
+      <pre><code class="language-css">@import "path/to/substrata/src/tokens/colors.css";
+@import "path/to/substrata/src/tokens/spacing.css";
+@import "path/to/substrata/src/tokens/typography.css";
+@import "path/to/substrata/src/tokens/radius-and-borders.css";
 @import "path/to/substrata/src/base.css";</code></pre>
 
       <h2>Using with Tailwind CSS</h2>
@@ -109,7 +112,7 @@
 
       <h3>Import tokens</h3>
 
-      <pre><code class="language-css">@import "path/to/substrata/src/tokens.css";
+      <pre><code class="language-css">@import "path/to/substrata/src/substrata.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;</code></pre>
