@@ -161,9 +161,9 @@ Bypassing CI is not allowed.
 
 If your change impacts design decisions:
 
-- Ensure it aligns with design-contract.json
-- Coordinate with design owners
-- Provide references to Figma styles when applicable
+- Coordinate with design owners and keep tokens as the contract between design and code.
+- When available (roadmap), align with `design-contract.json` (token–Figma mapping). See [CI.md](CI.md) and the [Governance](https://mikaelcarrara.github.io/substrata/governance) doc.
+- Provide references to Figma styles when applicable.
 
 Tokens must remain consistent across design and code.
 

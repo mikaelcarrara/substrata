@@ -51,7 +51,7 @@ The full CI pipeline is roadmap; today, CI can at least regenerate `tokens.json`
 
 ### Outputs (roadmap)
 - `substrata.d.ts` — TypeScript types
-- `design-contract.json` — mapping between tokens and design tools
+- `design-contract.json` — mapping between tokens and design tools (e.g. Figma: token → value → design reference). Documented in [GOVERNANCE.md](GOVERNANCE.md) (Design synchronization) and on the [Governance](https://mikaelcarrara.github.io/substrata/governance) doc page; not yet implemented.
 - CI reports (lint, breaking changes, audits)
 
 ## CI jobs
