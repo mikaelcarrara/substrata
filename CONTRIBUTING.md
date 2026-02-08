@@ -33,7 +33,7 @@ If you want to showcase usage, create a **separate repository** that consumes Su
 Please make sure you have read:
 - [`README.md`](./README.md)
 - [`GOVERNANCE.md`](./GOVERNANCE.md)
-- [`CHANGELOG.md`](./CHANGELOG.md)
+- Release notes (quando disponíveis)
 
 If you are unsure whether a change should live here, open an **Issue** before submitting a PR.
 
@@ -135,7 +135,7 @@ Specify if this is a breaking change.
 When deprecating a token:
 
 - Mark it as deprecated in the canonical source
-- Add a note in CHANGELOG.md
+- Add a note in release notes (ou CHANGELOG.md, se disponível)
 - Provide a recommended replacement
 - Keep the token available for at least two releases
 
